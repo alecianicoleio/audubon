@@ -1,0 +1,18 @@
+.main {
+  width: 80%;
+  margin: auto;
+}
+
+.left {
+  float: left;
+  display: inline-block;
+}
+
+.right{
+  float: right;
+  display: inline-block;
+}
+
+span {
+  color: #DF0101;
+}

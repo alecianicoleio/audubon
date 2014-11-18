@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="main.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    // Checks if form inputs are valid
+    function check(){
+      // Element to validate: name
+      var element = $('input[name=name]').val();
+      // Name should be a string
+      // ERROR TO FIX- NOT CHECKING NULL
+      if(element != ""){
+        if(!(isNaN(element))){
+          alert("Invalid Name: Cannot be only a number")
+          return false;
+        }
+      }
+/*
+      // Element to validate: email
+      element = $('input[name=email]').val();
+      // @ pos and . pos
+      var atpos = element.indexOf("@");
+      var dotpos = element.indexOf(".");
+      if(atpos < 1 || (dotpos + 2) > element.length || dotpos < (atpos + 2)){
+        alert("Please enter a valid email.");
+        return false;
+      }*/
+
+      // Element to validate: phone
+      element = $('input[name=phone]').val();
+      if(element != ""){
+        // Length of phone number must be 10 (1112223333) or 12 (999-999-9999)
+        var length = element.length;
+
+        if(length==10){
+          if(isNaN(element)){
+            // Phone number does not have all numbers
+            alert("Invalid Phone number");
+            return false;
+          }
+        }
+        else if(length==12){
+          // Break phone number into an array of three parts, removing the -
+          var parts = element.split('-');
+          // Array length of parts must be 3
+          var pLength = parts.length;
+
+          if(pLength==3){
+            for(part in parts){
+              if(isNaN(parts[part])){
+                // Invalid number
+                alert("Invalid Phone number");
+                return false;
+              }
+            }
+          }
+          else{
+            // Invalid number
+            alert("Invalid Phone number");
+            return false;
+          }
+        }
+        else{
+          // Invalid length
+          alert("Invalid Phone number");
+          return false;
+        }
+      }
+
+      // Element to validate: Date
+      // Element to validate: Time
+
+      // Element to validate: Location
+      element = $('input[name=location]').val();
+      if(element == ""){
+        // Location is required
+        alert("Please enter a location");
+      }
+
+      // Element to validate: Species
+      element = $('input[name=location]').val();
+      if(element == ""){
+        // Species is required
+        alert("Please enter a species");
+      }
+
+      // Element to validate: State
+      element = $('select[name=states] option:selected').val();
+      if(element == "select"){
+        alert("Please select a state");
+        return false;
+      }
+
+      // Element to validate: Description
+      element = $('textarea[name=desc]').val();
+      if(element == ""){
+        // Description is required
+        alert("Please enter a description");
+      }
+    }
+  </script>
+
+  <title>Bird Sighting</title>
+</head>
+
+<body>
+  <div class="main">
+    <form onsubmit="return check()">
+      <div class="left">
+        <label>Name:</label>
+        <label>Email:</label>
+        <label>Phone:</label>
+        <label>Species:<span>*</span></label>
+        <label>Description:<span>*</span></label>
+        <label>State:<span>*</span></label>
+      </div>
+
+      <!-- Personial Info -->
+      <div id="right">
+       <input type="text" name="name" />
+       <input type="email" name="email" />
+       <input type"phone" name="phone" />
+
+        <!-- Bird Info -->
+        <input type="text" name="species" />
+         <textarea rows="4" name="desc"></textarea>
+
+        <!-- Sighting Info -->
+        Time:<span>*</span> <input type="time" name="time" />
+        Location:<span>*</span> <input type="text" name="location" />
+        City:<span>*</span> <input type="text" name="city" />
+
+        <select class="states" name="states">
+          <option value="select">Select state</option>
+          <option value="AL">Alabama</option>
+          <option value="AK">Alaska</option>
+          <option value="AZ">Arizona</option>
+          <option value="AR">Arkansas</option>
+          <option value="CA">California</option>
+          <option value="CO">Colorado</option>
+          <option value="CT">Connecticut</option>
+          <option value="DE">Delaware</option>
+          <option value="FL">Florida</option>
+          <option value="GA">Georgia</option>
+          <option value="HI">Hawaii</option>
+          <option value="ID">Idaho</option>
+          <option value="IL">Illinois</option>
+          <option value="IN">Indiana</option>
+          <option value="IA">Iowa</option>
+          <option value="KS">Kansas</option>
+          <option value="KY">Kentucky</option>
+          <option value="LA">Louisiana</option>
+          <option value="ME">Maine</option>
+          <option value="MD">Maryland</option>
+          <option value="MA">Massachusetts</option>
+          <option value="MI">Michigan</option>
+          <option value="MN">Minnesota</option>
+          <option value="MS">Mississippi</option>
+          <option value="MO">Missouri</option>
+          <option value="MT">Montana</option>
+          <option value="NE">Nebraska</option>
+          <option value="NV">Nevada</option>
+          <option value="NH">New Hampshire</option>
+          <option value="NJ">New Jersey</option>
+          <option value="NM">New Mexico</option>
+          <option value="NY">New York</option>
+          <option value="NC">North Carolina</option>
+          <option value="ND">North Dakota</option>
+          <option value="OH">Ohio</option>
+          <option value="OK">Oklahoma</option>
+          <option value="OR">Oregon</option>
+          <option value="PA">Pennsylvania</option>
+          <option value="RI">Rhode Island</option>
+          <option value="SC">South Carolina</option>
+          <option value="SD">South Dakota</option>
+          <option value="TN">Tennessee</option>
+          <option value="TX">Texas</option>
+          <option value="UT">Utah</option>
+          <option value="VT">Vermont</option>
+          <option value="VA">Virgina</option>
+          <option value="WA">Washington</option>
+          <option value="WV">West Virgina</option>
+          <option value="WI">Wisconsin</option>
+          <option value="WY">Wyoming</option>
+        </select>
+
+      </div>
+
+
+      <input type="submit" value="Submit" />
+    </form>
+  </div>
+</body>
+</html>
