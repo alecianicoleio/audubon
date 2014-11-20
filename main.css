@@ -1,18 +1,37 @@
+/*
+Add slightly more space between divs and add a centering affect (margin: auto)
+*/
+div {
+  margin-top: 3px;
+  width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*
+Set the outer div (main) to a width of 80% and add a centering affect (margin: auto)
+*/
 .main {
   width: 80%;
   margin: auto;
 }
 
-.left {
+/*
+Set all labels to the same size and float left
+*/
+.label {
+  width: 125px;
   float: left;
-  display: inline-block;
 }
 
-.right{
-  float: right;
-  display: inline-block;
-}
-
+/*
+Required elements have a red *
+*/
 span {
   color: #DF0101;
+}
+
+legend {
+  font-size: 20px;
+  font-weight: 800;
 }
