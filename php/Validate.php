@@ -34,6 +34,18 @@ class Validate {
     public function valDescription($description) {
 
     }
+
+    public function valName($name) {
+
+    }
+
+    public function valEmail($email) {
+
+    }
+
+    publi function valPNumberr($pNumber) {
+
+    }
 }
 
 
