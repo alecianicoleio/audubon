@@ -43,7 +43,7 @@ class Validate {
 
     }
 
-    publi function valPNumberr($pNumber) {
+    public function valPNumber($pNumber) {
 
     }
 }
