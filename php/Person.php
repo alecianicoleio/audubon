@@ -10,11 +10,34 @@ class Person{
     private $email;
     private $pNumber;
 
-    function __construct() {
+    public function __construct() {
         $this->name = "";
-        $this->email "";
+        $this->email = "";
         $this->pNumber = "";
     }
 
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function setPNumber($pNumber) {
+        $this->pNumber = $pNumber;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function getpNumber() {
+        return $this->pNumber;
+    }
 }
 ?>

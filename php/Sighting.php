@@ -8,6 +8,7 @@
 
 class Sighting {
     private $date, $time, $location, $city, $state;
+    private $validate;
 
     public function __construct(){
         $this->date="";
@@ -15,6 +16,7 @@ class Sighting {
         $this->location="";
         $this->city="";
         $this->state="";
+        $this->validate = new Validate();
     }
 
     public function setDate($date){
