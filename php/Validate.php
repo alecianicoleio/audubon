@@ -11,7 +11,7 @@ class Validate {
 
     }
 
-    public function valDateTime($date, $time){
+    public function valDateTime($date, $minute, $hour){
 
     }
 

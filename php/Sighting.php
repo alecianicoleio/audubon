@@ -7,7 +7,7 @@
  */
 
 class Sighting {
-    private $date, $time, $location, $city, $state;
+    private $date, $minute, $hour, $location, $city, $state;
     private $validate;
 
     public function __construct(){
@@ -19,9 +19,10 @@ class Sighting {
         $this->validate = new Validate();
     }
 
-    public function setDateTime($date, $time){
-        $this->date;
-        $this->time;
+    public function setDateTime($date, $minute, $hour){
+        $this->date=$date;
+        $this->minute=$minute;
+        $this->hour=$hour;
     }
 
     public function getDate(){

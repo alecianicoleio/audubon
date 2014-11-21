@@ -16,10 +16,19 @@
 
         // Sighting
         $date = $_POST['date'];
-        $time = $_POST['time'];
+        $minute = $_POST['minute'];
+        $hour = $_POST['hour'];
         $location = $_POST['location'];
         $city = $_POST['city'];
         $state = $_POST['state'];
+
+        $sighting = new Sighting();
+        $sighting->setDateTime($date, $minute, $hour);
+        $sighting->setLocation($location);
+        $sighting->setCity($city);
+        $sighting->setState($state);
+
+        // End Sighting
 
         // Bird
         $species = $_POST['species'];
