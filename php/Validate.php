@@ -29,11 +29,24 @@ class Validate {
     }
 
     public function valSpecies($species) {
+        if(strlen($species) <= 0) {
+            //If the user does not enter a bird species
+            return 5;
+        }
 
+        if(preg_match('/d/'), $species) {
+            //if the string contains a number, it is not
+            //a proper bird species
+            return 5;
+        }
     }
 
     public function valDescription($description) {
-
+        if(strlen($description) <= 0) {
+            //If the user does not enter a required
+            //description
+            return 6;
+        }
     }
 
     public function valName($name) {
