@@ -26,4 +26,18 @@ class Validate {
     public function valState($state){
 
     }
-} 
+
+    public function valSpecies($species) {
+
+    }
+
+    public function valDescription($description) {
+
+    }
+}
+
+
+
+
+
+?>
