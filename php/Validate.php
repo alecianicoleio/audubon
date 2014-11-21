@@ -62,7 +62,7 @@ class Validate {
         endif;
     }
 
-    public function valPNumberr($pNumber) {
+    public function valPNumber($pNumber) {
         if(preg_match($this->pattern, $pNumber)):
             return 0;
         endif;

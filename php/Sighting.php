@@ -5,9 +5,10 @@
  * Date: 11/21/14
  * Time: 1:37 PM
  */
+include 'Validate.php';
 
 class Sighting {
-    private $date, $minute, $hour, $location, $city, $state;
+    private $year, $month, $day, $minute, $hour, $location, $city, $state;
     private $validate;
 
     public function __construct(){
@@ -19,8 +20,10 @@ class Sighting {
         $this->validate = new Validate();
     }
 
-    public function setDateTime($date, $minute, $hour){
-        $this->date=$date;
+    public function setDateTime($year, $month, $day, $minute, $hour){
+        $this->year=$year;
+        $this->month=$month;
+        $this->day=$day;
         $this->minute=$minute;
         $this->hour=$hour;
     }

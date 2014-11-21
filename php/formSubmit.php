@@ -5,8 +5,15 @@
  * Date: 11/21/14
  * Time: 1:56 PM
  */
-
+    include 'Sighting.php';
+    include 'Person.php';
+    include 'Bird.php';
+echo "hi2";
+ini_set('display_errors',1);
+ini_set('display_startup_errors',1);
+error_reporting(-1);
     submit();
+
 
     function submit(){
         // Person
@@ -20,15 +27,17 @@
         $person->setPNumber($phone);
 
         // Sighting
-        $date = $_POST['date'];
+        $year = $_POST['year'];
+        $month = $_POST['month'];
+        $day = $_POST['day'];
         $minute = $_POST['minute'];
         $hour = $_POST['hour'];
         $location = $_POST['location'];
         $city = $_POST['city'];
-        $state = $_POST['state'];
+        $state = $_POST['states'];
 
         $sighting = new Sighting();
-        $sighting->setDateTime($date, $minute, $hour);
+        $sighting->setDateTime($year, $month, $day, $minute, $hour);
         $sighting->setLocation($location);
         $sighting->setCity($city);
         $sighting->setState($state);
@@ -43,5 +52,4 @@
         $bird->setDescription($desc);
         $bird->setSpecies($species);
     }
-
 ?>
