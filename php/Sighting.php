@@ -19,16 +19,13 @@ class Sighting {
         $this->validate = new Validate();
     }
 
-    public function setDate($date){
+    public function setDateTime($date, $time){
         $this->date;
+        $this->time;
     }
 
     public function getDate(){
         return $this->date;
-    }
-
-    public function setTime($time){
-        $this->time=$time;
     }
 
     public function getTime(){
