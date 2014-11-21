@@ -14,6 +14,11 @@
         $email = $_POST['email'];
         $phone = $_POST['phone'];
 
+        $person = new Person();
+        $person->setEmail($email);
+        $person->setName($name);
+        $person->setPNumber($phone);
+
         // Sighting
         $date = $_POST['date'];
         $minute = $_POST['minute'];
@@ -33,6 +38,10 @@
         // Bird
         $species = $_POST['species'];
         $desc = $_POST['desc'];
+
+        $bird = new Bird();
+        $bird->setDescription($desc);
+        $bird->setSpecies($species);
     }
 
 ?>
