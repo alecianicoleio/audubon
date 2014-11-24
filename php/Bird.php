@@ -17,11 +17,19 @@ class Bird {
     }
 
     function setSpecies($species) {
-        $this->species = $species;
+        if($this->validate->valSpecies($species)) {
+            $this->species = $species;
+            return true;
+        }
+        return false;
     }
 
     function setDescription($description) {
-        $this->description = $description;
+        if($this->validate->valDescription($description)) {
+            $this->description = $description;
+            return true;
+        }
+        return false;
     }
 
     function getSpecies() {
