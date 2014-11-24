@@ -3,13 +3,17 @@
  * Written by Megan Maher
  * The Bird Object Class
  */
+include 'Validate.php';
+
 class Bird {
     private $species;
     private $description;
+    private $validate;
 
     public  function __construct() {
         $this->species = "";
         $this->description = "";
+        $this->validate = new Validate();
     }
 
     function setSpecies($species) {
