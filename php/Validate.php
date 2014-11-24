@@ -26,7 +26,7 @@ class Validate {
     }
 
     public function valSpecies($species) {
-        if(strlen($species) <= 0) {
+        if(strlen($species) < 1) {
             //If the user does not enter a bird species
             return false;
         }
@@ -40,7 +40,7 @@ class Validate {
     }
 
     public function valDescription($description) {
-        if(strlen($description) <= 0) {
+        if(strlen($description) < 1) {
             //If the user does not enter a required
             //description
             return false;
