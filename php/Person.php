@@ -5,7 +5,7 @@
  *
  * Order handles data about the total order, and computes the total cost.
  */
-include 'Validate.php';
+include_once 'Validate.php';
 
 class Person {
     private $name;
