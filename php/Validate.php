@@ -49,7 +49,7 @@ class Validate {
     }
 
     public function valName($name) {
-        if(strlen($name) < 1 && strlen($name) > 40) {
+        if(strlen($name) < 0 || strlen($name) > 40) {
             return false;
         }
         return true;
