@@ -45,7 +45,9 @@ function submit(){
 
     // Bird
     $species = $_POST['species'];
-    $description = $_POST['description'];
+    $description = $_POST['desc'];
+    echo "<br>";
+    var_dump($description);
 
     $bird = new Bird();
     var_dump($bird->setDescription($description));
