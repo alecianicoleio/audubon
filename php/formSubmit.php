@@ -40,8 +40,6 @@ function submit(){
     $sighting->setCity($city);
     $sighting->setState($state);
 
-    // End Sighting
-
     // Bird
     $species = $_POST['species'];
     $description = $_POST['description'];
