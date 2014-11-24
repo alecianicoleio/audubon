@@ -5,15 +5,19 @@
  *
  * Order handles data about the total order, and computes the total cost.
  */
-class Person{
+include 'Validate.php';
+
+class Person {
     private $name;
     private $email;
     private $pNumber;
+    private $validate;
 
     public function __construct() {
         $this->name = "";
         $this->email = "";
         $this->pNumber = "";
+        $this->validate = new Validate();
     }
 
     public function setName($name) {
