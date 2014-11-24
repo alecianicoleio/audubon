@@ -31,7 +31,7 @@ class Validate {
             return false;
         }
 
-        if(preg_match('/d/', $species)) {
+        if(preg_match('/d+/', $species)) {
             //if the string contains a number, it is not
             //a proper bird species
             return false;
