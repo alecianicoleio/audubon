@@ -9,19 +9,87 @@
 class Validate {
     private $pPattern = "/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/";
 
-    public function valDateTime($date, $minute, $hour){
+$states = array(
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'District of Columbia',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Carolina',
+    'North Dakota',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming',
+);
+
+    public function valDateTime($year, $month, $day, $minute, $hour){
+        $currentDate = new DateTime('Y-m-d H:i:s');
+        $newDate = new DateTime($year .'-'.$month.'-'.$day.' '.$hour.':'.$minute.':0');
+        if($newDate > $currentDate){
+            return false;
+        }
         return true;
     }
 
     public function valLocation($location){
+        if(strlen($location) < 1) {
+            return false;
+        }
         return true;
     }
 
     public function valCity($city){
+        if(strlen($city) < 1) {
+            return false;
+        }
         return true;
     }
 
     public function valState($state){
+        if(in_array($state, $states)) {
+            return false;
+        }
         return true;
     }
 
