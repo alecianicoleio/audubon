@@ -33,7 +33,7 @@ class Sighting {
     }
 
     public function getTime(){
-        return $this->$time;
+        return $this->time;
     }
 
     public function setLocation($location){
@@ -59,4 +59,4 @@ class Sighting {
     public function getState(){
         return $this->state;
     }
-} 
+}
