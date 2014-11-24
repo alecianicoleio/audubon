@@ -3,7 +3,7 @@
  * Written by Megan Maher
  * The Bird Object Class
  */
-include 'Validate.php';
+include_once 'Validate.php';
 
 class Bird {
     private $species;
