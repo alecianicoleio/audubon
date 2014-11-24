@@ -40,5 +40,4 @@ class Bird {
         return $this->description;
     }
 }
-
 ?>
