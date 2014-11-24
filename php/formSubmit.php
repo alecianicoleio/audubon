@@ -5,51 +5,50 @@
  * Date: 11/21/14
  * Time: 1:56 PM
  */
-    include 'Sighting.php';
-    include 'Person.php';
-    include 'Bird.php';
-echo "hi2";
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(-1);
-    submit();
+include 'Sighting.php';
+include 'Person.php';
+include 'Bird.php';
+ini_set('display_errors','on');
+error_reporting(1);
+submit();
 
+function submit(){
+    echo "BEGIN submit()";
+    // Person
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
 
-    function submit(){
-        // Person
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
+    $person = new Person();
+    $person->setEmail($email);
+    $person->setName($name);
+    $person->setPNumber($phone);
 
-        $person = new Person();
-        $person->setEmail($email);
-        $person->setName($name);
-        $person->setPNumber($phone);
+    // Sighting
+    $year = $_POST['year'];
+    $month = $_POST['month'];
+    $day = $_POST['day'];
+    $minute = $_POST['minute'];
+    $hour = $_POST['hour'];
+    $location = $_POST['location'];
+    $city = $_POST['city'];
+    $state = $_POST['states'];
 
-        // Sighting
-        $year = $_POST['year'];
-        $month = $_POST['month'];
-        $day = $_POST['day'];
-        $minute = $_POST['minute'];
-        $hour = $_POST['hour'];
-        $location = $_POST['location'];
-        $city = $_POST['city'];
-        $state = $_POST['states'];
+    $sighting = new Sighting();
+    $sighting->setDateTime($year, $month, $day, $minute, $hour);
+    $sighting->setLocation($location);
+    $sighting->setCity($city);
+    $sighting->setState($state);
 
-        $sighting = new Sighting();
-        $sighting->setDateTime($year, $month, $day, $minute, $hour);
-        $sighting->setLocation($location);
-        $sighting->setCity($city);
-        $sighting->setState($state);
+    // End Sighting
 
-        // End Sighting
+    // Bird
+    $species = $_POST['species'];
+    $desc = $_POST['desc'];
 
-        // Bird
-        $species = $_POST['species'];
-        $desc = $_POST['desc'];
-
-        $bird = new Bird();
-        $bird->setDescription($desc);
-        $bird->setSpecies($species);
-    }
+    $bird = new Bird();
+    $bird->setDescription($desc);
+    $bird->setSpecies($species);
+    echo "<br>END submit()";
+}
 ?>
