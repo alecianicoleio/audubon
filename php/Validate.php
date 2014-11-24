@@ -9,7 +9,7 @@
 class Validate {
     private $pPattern = "/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/";
 
-$states = array(
+    private $states = array(
     'Alabama',
     'Alaska',
     'Arizona',
@@ -60,7 +60,7 @@ $states = array(
     'Washington',
     'West Virginia',
     'Wisconsin',
-    'Wyoming',
+    'Wyoming'
 );
 
     public function valDateTime($year, $month, $day, $minute, $hour){
@@ -87,7 +87,7 @@ $states = array(
     }
 
     public function valState($state){
-        if(in_array($state, $states)) {
+        if(in_array($state, $this->states)) {
             return false;
         }
         return true;
