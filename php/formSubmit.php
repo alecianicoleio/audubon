@@ -22,7 +22,7 @@ function submit(){
     $person = new Person();
     echo "<br>A: " . $person->setEmail($email);
     echo "<br>B: " . $person->setName($name);
-    echo "<br>C: " . $person->setPNumber($phone);
+    var_dump( $person->setPNumber($phone));
 
     // Sighting
     $year = $_POST['year'];
