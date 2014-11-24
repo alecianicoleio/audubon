@@ -21,15 +21,27 @@ class Person {
     }
 
     public function setName($name) {
-        $this->name = $name;
+        if($this->validate->valName($name)):
+            $this->name = $name;
+            return true;
+        endif;
+        return false;
     }
 
     public function setEmail($email) {
-        $this->email = $email;
+        if($this->validate->valEmail($email)):
+            $this->email = $email;
+            return true;
+        endif;
+        return false;
     }
 
     public function setPNumber($pNumber) {
-        $this->pNumber = $pNumber;
+        if($this->validate->valPNumber($pNumber)):
+            $this->pNumber = $pNumber;
+            return true
+        endif;
+        return false;
     }
 
     public function getName() {
