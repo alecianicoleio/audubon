@@ -39,7 +39,7 @@ class Person {
     public function setPNumber($pNumber) {
         if($this->validate->valPNumber($pNumber)){
             $this->pNumber = $pNumber;
-            return true
+            return true;
         }
         return false;
     }
