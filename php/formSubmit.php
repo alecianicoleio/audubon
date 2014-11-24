@@ -44,10 +44,10 @@ function submit(){
 
     // Bird
     $species = $_POST['species'];
-    $desc = $_POST['desc'];
+    $description = $_POST['description'];
 
     $bird = new Bird();
-    $bird->setDescription($desc);
+    $bird->setDescription($description);
     $bird->setSpecies($species);
     echo "<br>END submit()";
 }
