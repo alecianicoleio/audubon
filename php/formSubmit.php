@@ -13,16 +13,19 @@ error_reporting(1);
 submit();
 
 function submit(){
-    echo "BEGIN submit()";
+    print_r("BEGIN submit()<br>");
     // Person
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
     $person = new Person();
-    echo "<br>A: " . var_dump($person->setEmail($email));
-    echo "<br>B: " . var_dump($person->setName($name));
-    echo "<br>C: " . var_dump($person->setPNumber($phone));
+    var_dump($person->setEmail($email));
+    echo "<br>";
+    var_dump($person->setName($name));
+    echo "<br>";
+    var_dump($person->setPNumber($phone));
+    echo "<br>";
 
     // Sighting
     $year = $_POST['year'];
@@ -45,8 +48,9 @@ function submit(){
     $description = $_POST['description'];
 
     $bird = new Bird();
-    echo "<br>D: " . var_dump($bird->setDescription($description));
-    echo "<br>E: " . var_dump($bird->setSpecies($species));
+    var_dump($bird->setDescription($description));
+    echo "<br>";
+    var_dump($bird->setSpecies($species));
     echo "<br>END submit()";
 }
 ?>
