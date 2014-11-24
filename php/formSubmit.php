@@ -20,9 +20,9 @@ function submit(){
     $phone = $_POST['phone'];
 
     $person = new Person();
-    echo "<br>A: " . $person->setEmail($email);
-    echo "<br>B: " . $person->setName($name);
-    echo "<br>C: " . $person->setPNumber($phone);
+    echo "<br>A: " . var_dump($person->setEmail($email));
+    echo "<br>B: " . var_dump($person->setName($name));
+    echo "<br>C: " . var_dump($person->setPNumber($phone));
 
     // Sighting
     $year = $_POST['year'];
@@ -45,8 +45,8 @@ function submit(){
     $description = $_POST['description'];
 
     $bird = new Bird();
-    echo "<br>D: " . $bird->setDescription($description);
-    echo "<br>E: " . $bird->setSpecies($species);
+    echo "<br>D: " . var_dump($bird->setDescription($description));
+    echo "<br>E: " . var_dump($bird->setSpecies($species));
     echo "<br>END submit()";
 }
 ?>
