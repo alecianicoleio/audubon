@@ -1,41 +1,58 @@
 <?php
-
+namespace Audubon\Configuration;
 require_once(dirname(__FILE__).'/../vendor/autoload.php');
-
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
-$paths = array('../php');
-$isDevMode = false;
+class Configuration{
 
-$dbParams = array(
-    'driver'    =>  'pdo_mysql',
-    'user'      =>  'root',
-    'password'  =>  '',
-    'dbName'    =>  'audubon'
-);
+    private $em;
+    public function __construct(){
+        $this->doctrineSetup();
+    }
+
+    public function doctrineSetup(){
+        $paths = array('../php');
+        $isDevMode = false;
+        $dbParams = $this->getDatabaseConfiguration();
+        $config = Setup::createYAMLMetadataConfiguration($paths,$dbParams);
+        $driver = new \Doctrine\ORM\Mapping\Driver\YamlDriver(array(dirname(__FILE__).'/../persistance'));
+        $config->setMetadataDriverImpl($driver);
+        $this->em = EntityManager::create($dbParams,$config);
+
+    }
+
+    public function getDatabaseConfiguration(){
+        $db = array(
+            'driver'    =>  'pdo_mysql',
+            'user'      =>  'root',
+            'password'  =>  '',
+            'dbname'    =>  'audubon',
+            'host'      =>  'localhost'
+        );
 
 
-/**
- * To create edit the way your database connects, create a new file called "local.php" in this same directory...
- * copy the
- * following code into it, and put in your actual password. The rest should take care of itself...
+        /**
+         * To create edit the way your database connects, create a new file called "local.php" in this same directory...
+         * copy the
+         * following code into it, and put in your actual password. The rest should take care of itself...
 
- $localDbParams = array(
-    'driver'    =>  'pdo_mysql',
-    'user'      =>  'root',
-    'password'  =>  'PASSWORD HERE',
-    'dbName'    =>  'audubon'
-);
+        $local = array(
+            'password'  =>  'PASSWORD HERE',
+        );
 
-$dbParams = $dbParams + $localDbParams;
- */
+        $dbParams = array_replace($db,$local);
+         */
 
-if (file_exists(dirname(__FILE__) . '/local.php')) {
-    include dirname(__FILE__) . '/local.php';
+        if (file_exists(dirname(__FILE__) . '/local.php')) {
+            include dirname(__FILE__) . '/local.php';
+        }
+        //die(var_dump($dbParams));
+        return $dbParams;
+    }
+
+    public function getEntityManager(){
+        return $this->em;
+    }
 }
 
-$config = Setup::createYAMLMetadataConfiguration($paths,$dbParams);
-$driver = new \Doctrine\ORM\Mapping\Driver\YamlDriver(array(dirname(__FILE__).'/../persistance'));
-$config->setMetadataDriverImpl($driver);
-$em = EntityManager::create($dbParams,$config);

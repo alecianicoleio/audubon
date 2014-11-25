@@ -13,6 +13,7 @@ class Person {
     private $email;
     private $pNumber;
     private $validate;
+    private $sightings;
 
     public function __construct() {
         $this->name = "";
