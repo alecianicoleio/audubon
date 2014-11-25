@@ -36,3 +36,55 @@ The list should show:
 However, it would be best not to print out the name and contact details of the person who reported the sighting.
 
 Your aunt's coworker is going to be just thrilled to have your help!
+
+###### Notes
+
+In order to complete part 2, you should probably begin to use best practices for web development.
+
+First, you will need to install [Composer](https://getcomposer.org/doc/00-intro.md#globally), so that you will be able to easliy manage all the third party dependencies that your app will require.
+
+Once composer is installed, you should be able to run `composer install` from the root directory of your repository, and all your third party dependencies will download and install into your project automatically.
+
+Second, since all great developers use unit testing to verify their code is working properly, you will probably want to install PHPUnit.
+
+Since we are all linuxy and stuff, it's really easy to do through terminal:
+
+`sudo apt-get install PHPUnit`
+
+Now you should be able to *start unit testing*! Just use the command `phpunit` from  the root directory of your repository, and all the unit tests will run and tell you everything wrong with your code :)
+
+Third, you will probably need some sort of persistance or storage solution, so that you can list out all the sightings that your aunt's coworker website tracks.
+
+Luckily, you will be able to do this process relatively easily. Open MySQL command line interface using `mysql -u 'your-username' -p`.
+
+> NOTE: Your username is probably 'root', unless you took the time to make your local database extra secure.
+
+Once inside of the MySQL CLI, just run `create database audubon;`. Finally, `exit` from MySQL.
+
+Finally, you will need to set up our [ORM](en.wikipedia.org/wiki/Object-relational_mapping), which will allow us to obfuscate our database access, and make us not directly access our database in our code.
+
+To Set up Doctrine (ORM), you need to complete two steps.
+
+In the config folder, create a new file called *local.php*. Copy the following code into it, changing the *YOUR-DATABASE-PASSWORD-HERE* to your actual database password.
+
+    <?php
+
+     $local = array(
+         'password'  =>  '*YOUR-DATABASE-PASSWORD-HERE*',
+     );
+
+     $dbParams = array_replace($db,$local);
+
+     ?>
+
+Don't worry, your changes will not be tracked, so no one else will be able to see your password.
+
+Once your database password has been updated, you will need to use Doctrine's cool CLI to generate your database. From the root directory of your repository run:
+
+`php vendor/bin/doctrine orm:schema-tool:create`
+
+If all goes well, you should now be wired in to use the database to save your data!
+
+It would probably be beneficial at this point to read [here](http://doctrine-orm.readthedocs.org/en/latest/reference/working-with-objects.html) to figure out how to save and retrieve records using Doctrine's entity manager and repositories.
+
+That should be it!

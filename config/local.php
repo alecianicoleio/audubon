@@ -1,10 +1,7 @@
 <?php
 
-$localDbParams = array(
-    'driver'    =>  'pdo_mysql',
-    'user'      =>  'root',
+$local = array(
     'password'  =>  'x0193942',
-    'dbName'    =>  'audubon'
 );
 
-$dbParams = $dbParams + $localDbParams;
+$dbParams = array_replace($db,$local);

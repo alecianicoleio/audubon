@@ -10,7 +10,7 @@ Bird:
       type: string
     description:
       type: string
-  manyToOne:
+  oneToMany:
     sightings:
       targetEntity: Sighting
       mappedBy: Bird

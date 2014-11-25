@@ -8,11 +8,11 @@ Person:
   fields:
     name:
       type: string
-    email
+    email:
       type: string
     pNumber:
       type: string
-  manyToOne:
+  oneToMany:
     sightings:
       targetEntity: Sighting
       mappedBy: person
