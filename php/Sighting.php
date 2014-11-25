@@ -31,8 +31,12 @@ class Sighting {
         $date = $this->validate->valDateTime($year, $month, $day, $minute, $hour);
 
         // if $date is not false, then it is a valid DateTime object
-        if($date)
+        if($date) {
             $this->date = $date;
+            return true;
+        }
+        else
+            return false;
     }
 
     public function getDate(){
@@ -40,8 +44,12 @@ class Sighting {
     }
 
     public function setLocation($location){
-        if($this->validate->valLocation($location))
-            $this->location=$location;
+        if($this->validate->valLocation($location)) {
+            $this->location = $location;
+            return true;
+        }
+        else
+            return false;
     }
 
     public function getLocation(){
@@ -49,8 +57,12 @@ class Sighting {
     }
 
     public function setCity($city){
-        if($this->validate->valCity($city))
-            $this->city=$city;
+        if($this->validate->valCity($city)) {
+            $this->city = $city;
+            return true;
+        }
+        else
+            return false;
     }
 
     public function getCity(){
@@ -58,8 +70,12 @@ class Sighting {
     }
 
     public function setState($state){
-        if($this->validate->valState($state))
-            $this->state=$state;
+        if($this->validate->valState($state)) {
+            $this->state = $state;
+            return true;
+        }
+        else
+            return false;
     }
 
     public function getState(){

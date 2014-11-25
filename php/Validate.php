@@ -71,7 +71,7 @@ class Validate {
 
         $month = "" + (intval($month) + 1);
 
-        $newDate = DateTime;
+        $newDate = new DateTime();
         // Attempt to create the date object- if anything is invalid, DateTime() will throw an exeception
         try{
             $newDate = new DateTime($year . "-" . $month . "-" . $day);
@@ -82,9 +82,23 @@ class Validate {
         $currentDate = new DateTime();
 
         // Returns false if fail
-        if(!$newDate->setTime($hour, $minute, 0)) {
+        try{
+            if(!$newDate->setTime($hour, $minute, 0)) {
+                return false;
+            }
+        } catch(Exception $e){
             return false;
         }
+
+        /*
+      Check for a leap year
+      If it's not a leap year, then Feburary 29th is not possible
+      */
+        $leapCheck = new DateTime($year . "-" . 2 . "-" . 29);
+        $isLeap = $leapCheck->format('m') == "03";
+
+        if($isLeap && $month==2 && $day==29)
+            return false;
 
         // New date cannot be greater then current date
         if($newDate > $currentDate) {
@@ -117,7 +131,7 @@ class Validate {
     }
 
     public function valSpecies($species) {
-        if(strlen($species) < 1) {
+        if($species == null) {
             //If the user does not enter a bird species
             return false;
         }
@@ -131,7 +145,7 @@ class Validate {
     }
 
     public function valDescription($description) {
-        if(strlen($description) < 1) {
+        if($description == null) {
             //If the user does not enter a required
             //description
             return false;
@@ -140,7 +154,10 @@ class Validate {
     }
 
     public function valName($name) {
-        if(strlen($name) < 0 || strlen($name) > 40) {
+        if($name == null){
+            return false;
+        }
+        if(strlen($name) > 40) {
             return false;
         }
         return true;
@@ -154,6 +171,7 @@ class Validate {
     }
 
     public function valPNumber($pNumber) {
+        // convert to string
         if(preg_match($this->pPattern, $pNumber)) {
             return true;
         }

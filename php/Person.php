@@ -54,7 +54,7 @@ class Person {
         return $this->email;
     }
 
-    public function getpNumber() {
+    public function getPNumber() {
         return $this->pNumber;
     }
 }
