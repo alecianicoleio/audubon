@@ -12,6 +12,8 @@ Sighting:
       type: string
     state:
       type: string
+    date:
+      type: datetime
   manyToOne:
     person:
       targetEntity: Person

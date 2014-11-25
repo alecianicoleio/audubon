@@ -89,17 +89,5 @@ class Sighting {
     public function getPerson(){
         return $this->person;
     }
-<<<<<<< HEAD
-}
-=======
-
-    public function setBird(Bird $bird){
-        $this->bird=$bird;
-    }
-
-    public function getBird(){
-        return $this->bird;
-    }
 }
 ?>
->>>>>>> f1a2dfa35c5acc96db293a8a845ca0c9e2e32b12
