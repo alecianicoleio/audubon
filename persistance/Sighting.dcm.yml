@@ -1,0 +1,23 @@
+Sighting:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    location:
+      type: string
+    city:
+      type: string
+    state:
+      type: string
+  manyToOne:
+    person:
+      targetEntity: Person
+      inversedBy: sightings
+    bird:
+      targetEntity: Bird
+      inversedBy: sightings
+
+

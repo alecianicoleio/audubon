@@ -1,0 +1,16 @@
+Bird:
+  type: entity
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    species:
+      type: string
+    description:
+      type: string
+  manyToOne:
+    sightings:
+      targetEntity: Sighting
+      mappedBy: Bird

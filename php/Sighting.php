@@ -9,7 +9,7 @@ include 'Validate.php';
 
 class Sighting {
     private $year, $month, $day, $minute, $hour, $location, $city, $state;
-    private $validate;
+    private $validate, $bird;
 
     public function __construct(){
         $this->date="";
@@ -58,5 +58,21 @@ class Sighting {
 
     public function getState(){
         return $this->state;
+    }
+
+    /**
+     * @param Bird $bird
+     */
+    public function setBird($bird)
+    {
+        $this->bird = $bird;
+    }
+
+    /**
+     * @return Bird
+     */
+    public function getBird()
+    {
+        return $this->bird;
     }
 }
