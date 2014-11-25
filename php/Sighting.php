@@ -5,15 +5,15 @@
  * Date: 11/21/14
  * Time: 1:37 PM
  */
-include 'Validate.php';
+include_once 'Validate.php';
+include_once 'Person.php';
 
 class Sighting {
-    private $year, $month, $day, $minute, $hour, $location, $city, $state;
+    private $date, $location, $city, $state, $person;
     private $validate;
 
     public function __construct(){
         $this->date="";
-        $this->time="";
         $this->location="";
         $this->city="";
         $this->state="";
@@ -21,23 +21,20 @@ class Sighting {
     }
 
     public function setDateTime($year, $month, $day, $minute, $hour){
-        $this->year=$year;
-        $this->month=$month;
-        $this->day=$day;
-        $this->minute=$minute;
-        $this->hour=$hour;
+        try{
+            $this->date = $this->validate->valDateTime($year, $month, $day, $minute, $hour);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function getDate(){
-        return $this->date;
-    }
-
-    public function getTime(){
-        return $this->time;
+        return $this->date->format('Y-m-d H:i:s');
     }
 
     public function setLocation($location){
-        $this->location=$location;
+        if($this->validate->valLocation($location))
+            $this->location=$location;
     }
 
     public function getLocation(){
@@ -45,7 +42,8 @@ class Sighting {
     }
 
     public function setCity($city){
-        $this->city=$city;
+        if($this->validate->valCity($city))
+            $this->city=$city;
     }
 
     public function getCity(){
@@ -53,10 +51,20 @@ class Sighting {
     }
 
     public function setState($state){
-        $this->state=$state;
+        if($this->validate->valState($state))
+            $this->state=$state;
     }
 
     public function getState(){
         return $this->state;
     }
+
+    public function setPerson($person){
+        $this->person = $person;
+    }
+
+    public function getPerson(){
+        return $this->person;
+    }
 }
+?>

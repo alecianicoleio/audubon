@@ -5,15 +5,15 @@
  * Date: 11/21/14
  * Time: 1:56 PM
  */
-include 'Sighting.php';
-include 'Person.php';
-include 'Bird.php';
+include_once 'Sighting.php';
+include_once 'Person.php';
+include_once 'Bird.php';
 ini_set('display_errors','on');
 error_reporting(1);
 submit();
 
 function submit(){
-    echo "BEGIN submit()";
+    echo "BEGIN submit() <br>";
     // Person
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -34,13 +34,12 @@ function submit(){
     $city = $_POST['city'];
     $state = $_POST['states'];
 
-    var_dump($year);
-
     $sighting = new Sighting();
-    var_dump($sighting->setDateTime($year, $month, $day, $minute, $hour));
-    var_dump($sighting->setLocation($location));
-    var_dump($sighting->setCity($city));
-    var_dump($sighting->setState($state));
+    $sighting->setDateTime($year, $month, $day, $minute, $hour);
+    $sighting->setLocation($location);
+    $sighting->setCity($city);
+    $sighting->setState($state);
+    $sighting->setPerson($person);
 
     // Bird
     $species = $_POST['species'];
@@ -49,6 +48,24 @@ function submit(){
     $bird = new Bird();
     $bird->setDescription($description);
     $bird->setSpecies($species);
+
+    echo $sighting->getPerson()->getName();
+    echo "<br>";
+    echo $sighting->getPerson()->getEmail();
+    echo "<br>";
+    echo $sighting->getPerson()->getpNumber();
+    echo "<br>";
+    echo $sighting->getDate();
+    echo "<br>";
+    echo $sighting->getLocation();
+    echo "<br>";
+    echo $sighting->getCity();
+    echo "<br>";
+    echo $sighting->getState();
+    echo "<br>";
+    echo $bird->getDescription();
+    echo "<br>";
+    echo $bird->getSpecies();
     echo '<br>END submit()';
 }
 ?>
