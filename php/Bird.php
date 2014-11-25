@@ -6,6 +6,7 @@
 include_once 'Validate.php';
 
 class Bird {
+    private $id;
     private $species;
     private $description;
     private $validate;

@@ -9,7 +9,13 @@ include_once 'Validate.php';
 include_once 'Person.php';
 
 class Sighting {
-    private $date, $location, $city, $state, $person;
+    private $id;
+    private $date;
+    private $location;
+    private $city;
+    private $state;
+    private $person;
+    private $bird;
     private $validate;
 
     public function __construct(){
@@ -21,11 +27,12 @@ class Sighting {
     }
 
     public function setDateTime($year, $month, $day, $minute, $hour){
-        try{
-            $this->date = $this->validate->valDateTime($year, $month, $day, $minute, $hour);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        // $date will be a DateTime object or false if there is an error
+        $date = $this->validate->valDateTime($year, $month, $day, $minute, $hour);
+
+        // if $date is not false, then it is a valid DateTime object
+        if($date)
+            $this->date = $date;
     }
 
     public function getDate(){
@@ -65,6 +72,14 @@ class Sighting {
 
     public function getPerson(){
         return $this->person;
+    }
+
+    public function setBird(Bird $bird){
+        $this->bird=$bird;
+    }
+
+    public function getBird(){
+        return $this->bird;
     }
 }
 ?>
