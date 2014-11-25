@@ -53,7 +53,7 @@ function submit(){
     echo "<br>";
     echo $sighting->getPerson()->getEmail();
     echo "<br>";
-    echo $sighting->getPerson()->getpNumber();
+    echo $sighting->getPerson()->getPNumber();
     echo "<br>";
     echo $sighting->getDate();
     echo "<br>";
