@@ -66,7 +66,7 @@ class Validate {
     public function valDateTime($year, $month, $day, $minute, $hour){
         // Cannot be empty
         if($year == null || $month == null || $day == null || $minute == null || $hour == null) {
-            throw new Exception('Null error');
+            return false;
         }
 
         $month = "" + (intval($month) + 1);
@@ -76,19 +76,19 @@ class Validate {
         try{
             $newDate = new DateTime($year . "-" . $month . "-" . $day);
         } catch (Exception $e){
-            throw new Exception('Date create error');
+            return false;
         }
 
         $currentDate = new DateTime();
 
         // Returns false if fail
         if(!$newDate->setTime($hour, $minute, 0)) {
-            throw new Exception('Set time error');
+            return false;
         }
 
         // New date cannot be greater then current date
         if($newDate > $currentDate) {
-            throw new Exception('Greater date error');
+            return false;
         }
 
         // Success

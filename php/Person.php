@@ -8,6 +8,7 @@
 include_once 'Validate.php';
 
 class Person {
+    private $id;
     private $name;
     private $email;
     private $pNumber;
