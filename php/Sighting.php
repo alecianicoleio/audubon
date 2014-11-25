@@ -63,7 +63,7 @@ class Sighting {
     /**
      * @param Bird $bird
      */
-    public function setBird($bird)
+    public function setBird(Bird $bird)
     {
         $this->bird = $bird;
     }
@@ -74,8 +74,9 @@ class Sighting {
     public function getBird()
     {
         return $this->bird;
+    }
 
-    public function setPerson($person){
+    public function setPerson(Person $person){
         $this->person = $person;
     }
 
@@ -83,4 +84,3 @@ class Sighting {
         return $this->person;
     }
 }
-?>

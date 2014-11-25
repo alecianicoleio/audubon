@@ -62,6 +62,7 @@ class Validate {
           'WY'
 );
 
+
     public function valDateTime($year, $month, $day, $minute, $hour){
         // Cannot be empty
         if($year == null || $month == null || $day == null || $minute == null || $hour == null) {
