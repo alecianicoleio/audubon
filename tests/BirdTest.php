@@ -11,7 +11,7 @@
 namespace Audubon;
 use Audubon\Configuration\Configuration as Configuration;
 
-class BirdTest extends \PHPUnit_Framework_TestCase{
+class BirdTest extends TestCase{
 
     protected $bird;
     protected $em;

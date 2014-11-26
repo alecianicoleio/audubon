@@ -7,8 +7,12 @@ use Doctrine\ORM\EntityManager;
 class Configuration{
 
     private $em;
-    public function __construct(){
+    private $environment;
+
+    public function __construct($environment='development'){
+        $this->environment = $environment;
         $this->doctrineSetup();
+
     }
 
     public function doctrineSetup(){
@@ -27,7 +31,7 @@ class Configuration{
             'driver'    =>  'pdo_mysql',
             'user'      =>  'root',
             'password'  =>  '',
-            'dbname'    =>  'audubon',
+            'dbname'    =>  $this->environment == 'development' ? 'audubon' : 'audubonTesting',
             'host'      =>  'localhost'
         );
 
