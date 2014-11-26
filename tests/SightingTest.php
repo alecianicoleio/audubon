@@ -52,10 +52,13 @@ class SightingTest extends TestCase{
         // $year, $month, $day, $minute, $hour
         $date = new \DateTime("2010-5-20");
         $date->setTime(10,5,0);
-        $this->assertEquals($date,$this->sighting->setDateTime("2010","4","20","5","10"));
+        $date = $date->format('Y-m-d H:i:s');
+        $this->sighting->setDateTime("2010","4","20","5","10");
+        $this->assertEquals($date,$this->sighting->getDate());
         $this->assertEquals($date,$this->sighting->setDateTime(2010,4,20,5,10));
         $this->assertEquals($date,$this->sighting->setDateTime("2010",4,20,5,10));
         $this->assertEquals($date,$this->sighting->setDateTime(2010,"4",20,"5",10));
+ 
         // Leap year
         $date = new \DateTime("2000-2-29");
         $date->setTime(10,5,0);
