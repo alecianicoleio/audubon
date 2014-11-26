@@ -8,10 +8,11 @@
 
 namespace Audubon;
 
-class SightingTest {
+class SightingTest extends TestCase{
     protected $sighting;
 
     protected function setUp(){
+        parent::setUp();
         $this->sighting = new Sighting();
     }
 

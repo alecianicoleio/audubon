@@ -12,7 +12,6 @@ namespace Audubon;
 use Audubon\Configuration\Configuration as Configuration;
 
 class BirdTest extends TestCase{
-
     protected $bird;
     protected $em;
 
