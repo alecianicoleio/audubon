@@ -74,5 +74,23 @@ class PersonTest extends TestCase{
         $this->assertFalse($this->person->setPNumber("919909909a"));
     }
 
+    // Test 4
+    public function testSetEmailDatabaseCheck(){
+        // setup data to test database checks
+        $this->emailDataSetup();
+
+        // should return true
+        $this->assertTrue($this->person->setEmail("b@b.edu",$this->em));
+        $this->assertTrue($this->person->setEmail("b42@bloop.net",$this->em));
+        $this->assertTrue($this->person->setEmail("b42@blo42op.net",$this->em));
+        $this->assertTrue($this->person->setEmail("b42@bloop.edu",$this->em));
+        $this->assertTrue($this->person->setEmail("b42@bloop.com",$this->em));
+
+        // should return false
+        $this->assertFalse($this->person->setEmail("pete@pete.com",$this->em));
+        $this->assertFalse($this->person->setEmail("definatly@best.com",$this->em));
+        $this->assertFalse($this->person->setEmail("pizza@yummy.edu",$this->em));
+    }
+
 
 } 

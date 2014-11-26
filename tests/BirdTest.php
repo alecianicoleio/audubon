@@ -50,4 +50,20 @@ class BirdTest extends TestCase{
         $this->assertFalse($this->bird->setDescription(""));
     }
 
+    // Test 2
+    public function testSetSpeciesDatabaseCheck(){
+        // setup data to test database checks
+        $this->speciesDataSetup();
+
+        // should return true (no entry)
+        $this->assertTrue($this->bird->setSpecies("Bird",$this->em));
+        $this->assertTrue($this->bird->setSpecies("Big bird",$this->em));
+        $this->assertTrue($this->bird->setSpecies("Blob",$this->em));
+
+        // should return false (entry exists)
+        $this->assertFalse($this->bird->setSpecies("penguin",$this->em));
+        $this->assertFalse($this->bird->setSpecies("chicken",$this->em));
+        $this->assertFalse($this->bird->setSpecies("turkey",$this->em));
+    }
+
 } 
