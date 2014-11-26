@@ -17,3 +17,4 @@ Audubon\Person:
     sightings:
       targetEntity: Sighting
       mappedBy: person
+      cascade: ["PERSIST"]

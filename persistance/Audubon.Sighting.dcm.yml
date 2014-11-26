@@ -19,8 +19,10 @@ Audubon\Sighting:
     person:
       targetEntity: Person
       inversedBy: sightings
+      cascade: ["persist"]
     bird:
       targetEntity: Bird
       inversedBy: sightings
+      cascade: ["persist"]
 
 

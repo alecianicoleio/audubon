@@ -26,6 +26,7 @@ class Sighting {
         $this->state="";
         $this->validate = new Validate();
         $this->hasErrors = false;
+        $this->person;
     }
 
     public function setDateTime($year, $month, $day, $minute, $hour){

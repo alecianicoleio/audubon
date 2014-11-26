@@ -15,3 +15,4 @@ Audubon\Bird:
     sightings:
       targetEntity: Sighting
       mappedBy: Bird
+      cascade: ["PERSIST"]

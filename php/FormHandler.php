@@ -30,11 +30,10 @@ class FormHandler {
             echo "Person inputs contain an error";
             return false;
         }
-            
+
         // Person is optional, so only submit data if an input was provided.  Also do not submit a duplicate
         if($person->getEmail()!="" && $person->getPNumber()!="" && $person->getName()!="" && $person->getCheckSubmit()){
             // Prepare $person for submission to database
-            die("here");
             $em->persist($person);
         }
 
@@ -70,8 +69,9 @@ class FormHandler {
         $sighting->setLocation($location);
         $sighting->setCity($city);
         $sighting->setState($state);
-        $sighting->setPerson($person);
         $sighting->setBird($bird);
+        $sighting->setPerson($person);
+
 
         if($sighting->getHasErrors()){
             echo "Sighting inputs contain an error";
