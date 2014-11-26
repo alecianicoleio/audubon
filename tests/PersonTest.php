@@ -7,13 +7,17 @@
  */
 
 namespace Audubon;
+use Audubon\Configuration\Configuration as Configuration;
 
 
 class PersonTest extends \PHPUnit_Framework_TestCase{
     protected $person;
+    protected $em;
 
     protected function setUp(){
         $this->person = new Person();
+        $config = new Configuration();
+        $this->em = $config->getEntityManager();
     }
 
     // Test 1
@@ -34,23 +38,23 @@ class PersonTest extends \PHPUnit_Framework_TestCase{
     // Test 2
     public function testValEmail(){
         // should return true
-        $this->assertTrue($this->person->setEmail("pete@pete.com"));
-        $this->assertTrue($this->person->setEmail("b@b.edu"));
-        $this->assertTrue($this->person->setEmail("b42@bloop.net"));
-        $this->assertTrue($this->person->setEmail("b42@blo42op.net"));
-        $this->assertTrue($this->person->setEmail("b42@bloop.edu"));
-        $this->assertTrue($this->person->setEmail("b42@bloop.com"));
+        $this->assertTrue($this->person->setEmail("pete@pete.com",$this->em));
+        $this->assertTrue($this->person->setEmail("b@b.edu",$this->em));
+        $this->assertTrue($this->person->setEmail("b42@bloop.net",$this->em));
+        $this->assertTrue($this->person->setEmail("b42@blo42op.net",$this->em));
+        $this->assertTrue($this->person->setEmail("b42@bloop.edu",$this->em));
+        $this->assertTrue($this->person->setEmail("b42@bloop.com",$this->em));
 
         // should return false (it cannot be null)
-        $this->assertFalse($this->person->setEmail(""));
+        $this->assertFalse($this->person->setEmail("",$this->em));
 
         // should return false (invalid email)
-        $this->assertFalse($this->person->setEmail(9464));
-        $this->assertFalse($this->person->setEmail("dbie"));
-        $this->assertFalse($this->person->setEmail("beog.com"));
-        $this->assertFalse($this->person->setEmail("pizza@yummy"));
-        $this->assertFalse($this->person->setEmail("pizza@.net"));
-        $this->assertFalse($this->person->setEmail("wrong"));
+        $this->assertFalse($this->person->setEmail(9464,$this->em));
+        $this->assertFalse($this->person->setEmail("dbie",$this->em));
+        $this->assertFalse($this->person->setEmail("beog.com",$this->em));
+        $this->assertFalse($this->person->setEmail("pizza@yummy",$this->em));
+        $this->assertFalse($this->person->setEmail("pizza@.net",$this->em));
+        $this->assertFalse($this->person->setEmail("wrong",$this->em));
     }
 
     // Test 3

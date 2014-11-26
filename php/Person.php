@@ -15,6 +15,9 @@ class Person {
     private $validate;
     // if there is an error, we will not submit any data to the database
     private $hasErrors = false;
+    // check if object should be submitted to the database (don't submit on duplicate)
+    private $checkSubmit = true;
+    private $sightings;
 
     public function __construct() {
         $this->name = "";
@@ -33,8 +36,14 @@ class Person {
         return false;
     }
 
-    public function setEmail($email) {
+    public function setEmail($email,$em) {
         if($this->validate->valEmail($email)){
+            // if email exists, then this person already exists in the database, thus don't add a duplicate
+            if($em->getRepository('Audubon\Person')->emailExists($email)){
+                $this->checkSubmit=false;
+                return false;
+            }
+
             $this->email = $email;
             return true;
         }
@@ -67,6 +76,10 @@ class Person {
 
     public function getHasErrors(){
         return $this->hasErrors;
+    }
+
+    public function getCheckSubmit(){
+        return $this->checkSubmit;
     }
 }
 ?>

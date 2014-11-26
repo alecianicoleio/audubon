@@ -9,32 +9,36 @@
  */
 
 namespace Audubon;
+use Audubon\Configuration\Configuration as Configuration;
 
 class BirdTest extends \PHPUnit_Framework_TestCase{
 
     protected $bird;
+    protected $em;
 
     protected function setUp(){
         $this->bird = new Bird();
+        $config = new Configuration();
+        $this->em = $config->getEntityManager();
     }
 
     // Test 1
     public function testSetSpecies(){
         // should return true
-        $this->assertTrue($this->bird->setSpecies("Bird"));
-        $this->assertTrue($this->bird->setSpecies("Big bird"));
-        $this->assertTrue($this->bird->setSpecies("Penguin"));
+        $this->assertTrue($this->bird->setSpecies("Bird",$this->em));
+        $this->assertTrue($this->bird->setSpecies("Big bird",$this->em));
+        $this->assertTrue($this->bird->setSpecies("Penguin",$this->em));
 
         // should return false (it cannot be null)
-        $this->assertFalse($this->bird->setSpecies(""));
+        $this->assertFalse($this->bird->setSpecies("",$this->em));
 
         // should return false (cannot contain a number)
-        $this->assertFalse($this->bird->setSpecies("9Bird"));
-        $this->assertFalse($this->bird->setSpecies("Bird9"));
-        $this->assertFalse($this->bird->setSpecies("B9rd"));
-        $this->assertFalse($this->bird->setSpecies("B99rd"));
-        $this->assertFalse($this->bird->setSpecies("9Bird9"));
-        $this->assertFalse($this->bird->setSpecies(999));
+        $this->assertFalse($this->bird->setSpecies("9Bird",$this->em));
+        $this->assertFalse($this->bird->setSpecies("Bird9",$this->em));
+        $this->assertFalse($this->bird->setSpecies("B9rd",$this->em));
+        $this->assertFalse($this->bird->setSpecies("B99rd",$this->em));
+        $this->assertFalse($this->bird->setSpecies("9Bird9",$this->em));
+        $this->assertFalse($this->bird->setSpecies(999,$this->em));
     }
 
     // Test 2

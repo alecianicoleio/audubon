@@ -1,5 +1,6 @@
 Audubon\Bird:
   type: entity
+  repositoryClass: Audubon\BirdRepository
   id:
     id:
       type: integer

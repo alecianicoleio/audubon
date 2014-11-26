@@ -21,18 +21,18 @@ class FormHandler {
         $phone = $form['phone'];
 
         $person = new Person();
-        $person->setEmail($email);
+        $person->setEmail($email,$em);
         $person->setName($name);
         $person->setPNumber($phone);
 
         // If there was an error raised during the creation of the class, then don't submit data
         if($person->getHasErrors()){
             echo "Person inputs contain an error";
-            return;
+            return false;
         }
 
-        // Person is optional, so only submit data if an input was provided
-        if($person->getEmail()!="" && $person->getPNumber()!="" && $person->getName()!=""){
+        // Person is optional, so only submit data if an input was provided.  Also do not submit a duplicate
+        if($person->getEmail()!="" && $person->getPNumber()!="" && $person->getName()!="" && $person->getCheckSubmit()){
             // Prepare $person for submission to database
             $em->persist($person);
         }
@@ -43,15 +43,16 @@ class FormHandler {
 
         $bird = new Bird();
         $bird->setDescription($description);
-        $bird->setSpecies($species);
+        $bird->setSpecies($species, $em);
 
         if($bird->getHasErrors()){
             echo "Bird inputs contain an error";
-            return;
+            return false;
         }
 
-        // Prepare $bird for submission to database
-        $em->persist($bird);
+        // Prepare $bird for submission to database (don't submit on duplicate)
+        if($bird->getCheckSubmit())
+            $em->persist($bird);
 
         // Sighting
         $year = $form['year'];
@@ -73,7 +74,7 @@ class FormHandler {
 
         if($sighting->getHasErrors()){
             echo "Sighting inputs contain an error";
-            return;
+            return false;
         }
 
         // Prepare $sighting for submission to database
@@ -83,6 +84,7 @@ class FormHandler {
         $em->flush();
 
         echo 'saved...';
+        return true;
 
     }
 } 
