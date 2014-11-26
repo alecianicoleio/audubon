@@ -8,6 +8,7 @@ class Configuration{
 
     private $em;
     private $environment;
+    private $db;
 
     public function __construct($environment='development'){
         $this->environment = $environment;
@@ -52,7 +53,12 @@ class Configuration{
             include dirname(__FILE__) . '/local.php';
         }
         //die(var_dump($dbParams));
+        $this->db = $db;
         return $db;
+    }
+
+    public function getDB(){
+        return $this->db;
     }
 
     /**
