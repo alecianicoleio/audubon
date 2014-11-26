@@ -16,8 +16,6 @@ class PersonTest extends TestCase{
     protected function setUp(){
         parent::setUp();
         $this->person = new Person();
-        $config = new Configuration();
-        $this->em = $config->getEntityManager();
     }
 
     // Test 1

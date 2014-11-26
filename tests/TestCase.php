@@ -29,15 +29,16 @@ class TestCase extends \PHPUnit_Framework_TestCase{
     private function configure(){
         $db = $this->config->getDB();
         $connection = $this->em->getConnection();
-        //$connection->executeQuery("DROP DATABASE IF EXISTS `{$db['dbname']}`");
-        $connection->executeQuery("CREATE DATABASE IF NOT EXISTS `{$db['dbname']}`");
-        $connection->executeQuery("USE {$db['dbname']}");
+        $connection->executeQuery("DROP DATABASE IF EXISTS `{$db['testdbname']}`");
+        $connection->executeQuery("CREATE DATABASE IF NOT EXISTS `{$db['testdbname']}`");
+        $connection->executeQuery("USE {$db['testdbname']}");
+        //
         $this->createSchema();
     }
 
     private function createSchema(){
         $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($this->em);
-        $metaData = array(dirname(__FILE__).'/../persistance');
+        $metaData = $this->em->getMetaDataFactory()->getAllMetadata();
         $sqlToRun = $schemaTool->getUpdateSchemaSql($metaData,false);
         if(!count($sqlToRun))
             return false;

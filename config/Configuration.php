@@ -32,7 +32,8 @@ class Configuration{
             'driver'    =>  'pdo_mysql',
             'user'      =>  'root',
             'password'  =>  '',
-            'dbname'    =>  $this->environment == 'development' ? 'audubon' : 'audubonTesting',
+            'dbname'    =>  'audubon',
+            'testdbname'=>  'audubontesting',
             'host'      =>  'localhost'
         );
 
