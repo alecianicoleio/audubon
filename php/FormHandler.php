@@ -30,10 +30,11 @@ class FormHandler {
             echo "Person inputs contain an error";
             return false;
         }
-
+            
         // Person is optional, so only submit data if an input was provided.  Also do not submit a duplicate
         if($person->getEmail()!="" && $person->getPNumber()!="" && $person->getName()!="" && $person->getCheckSubmit()){
             // Prepare $person for submission to database
+            die("here");
             $em->persist($person);
         }
 

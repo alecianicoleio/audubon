@@ -1,5 +1,6 @@
 Audubon\Sighting:
   type: entity
+  repositoryClass: Audubon\SightingRepository
   id:
     id:
       type: integer
