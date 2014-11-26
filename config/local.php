@@ -1,7 +1,8 @@
 <?php
 
 $local = array(
-    'password'  =>  'x0193942',
+    'password'  =>  'shining88',
 );
 
-$dbParams = array_replace($db,$local);
+$db = array_replace($db,$local);
+?>

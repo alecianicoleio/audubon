@@ -6,7 +6,9 @@
         "classmap": [
             "php",
             "persistance",
-            "MegLaw"
+            "MegLaw",
+            "config",
+            "tests"
         ]
     },
     "require-dev": {

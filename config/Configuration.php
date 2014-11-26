@@ -48,9 +48,12 @@ class Configuration{
             include dirname(__FILE__) . '/local.php';
         }
         //die(var_dump($dbParams));
-        return $dbParams;
+        return $db;
     }
 
+    /**
+     * @return Doctrine\ORM\EntityManager
+     */
     public function getEntityManager(){
         return $this->em;
     }

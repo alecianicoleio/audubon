@@ -1,4 +1,4 @@
-Person:
+Audubon\Person:
   type: entity
   id:
     id:

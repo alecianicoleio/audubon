@@ -6,14 +6,14 @@
  * Time: 3:25 PM
  */
 
-namespace tests;
+namespace Audubon;
 
 
 class PersonTest extends \PHPUnit_Framework_TestCase{
     protected $person;
 
     protected function setUp(){
-        $this->person = new \Person();
+        $this->person = new Person();
     }
 
     // Test 1

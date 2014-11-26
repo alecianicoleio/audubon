@@ -6,14 +6,13 @@
  * Time: 12:41 PM
  */
 
-namespace tests;
-
+namespace Audubon;
 
 class ValidateTest extends \PHPUnit_Framework_TestCase{
 
     // Test 1
     public function testValLocation(){
-        $val = new \Validate();
+        $val = new Validate();
 
         // should return true
         $this->assertTrue($val->valLocation("yard"));
@@ -27,7 +26,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase{
 
     // Test 2
     public function testValCity(){
-        $val = new \Validate();
+        $val = new Validate();
 
         // should return true
         $this->assertTrue($val->valCity("Greenville"));
@@ -41,7 +40,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase{
 
     // Test 3
     public function testSpecies(){
-        $val = new \Validate();
+        $val = new Validate();
 
         // should return true
         $this->assertTrue($val->valSpecies("Bird"));
@@ -62,7 +61,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase{
 
     // Test 4
     public function testValDescription(){
-        $val = new \Validate();
+        $val = new Validate();
 
         // should return true
         $this->assertTrue($val->valDescription("Tasty bird"));
@@ -75,7 +74,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase{
 
     // Test 5
     public function testValName(){
-        $val = new \Validate();
+        $val = new Validate();
 
         // should return true
         $this->assertTrue($val->valName("Pete"));
@@ -91,7 +90,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase{
 
     // Test 6
     public function testValEmail(){
-        $val = new \Validate();
+        $val = new Validate();
 
         // should return true
         $this->assertTrue($val->valEmail("pete@pete.com"));
@@ -115,7 +114,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase{
 
     // Test 7
     public function testValPNumber(){
-        $val = new \Validate();
+        $val = new Validate();
 
         // should return true
         $this->assertTrue($val->valPNumber("919-919-9199"));
@@ -142,7 +141,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase{
          * Because of this, valDateTime increments the month by 1
          */
 
-        $val = new \Validate();
+        $val = new Validate();
 
         // dates should be the same
         // $year, $month, $day, $minute, $hour
@@ -170,7 +169,7 @@ class ValidateTest extends \PHPUnit_Framework_TestCase{
 
     // Test 2
     public function testValState(){
-        $val = new \Validate();
+        $val = new Validate();
 
         // should return true
         $this->assertTrue($val->valState("MI"));

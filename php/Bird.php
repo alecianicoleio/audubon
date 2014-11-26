@@ -3,7 +3,7 @@
  * Written by Megan Maher
  * The Bird Object Class
  */
-include_once 'Validate.php';
+namespace Audubon;
 
 class Bird {
     private $id;
@@ -11,6 +11,8 @@ class Bird {
     private $description;
     private $validate;
     private $sightings;
+    // if there is an error, we will not submit any data to the database
+    private $hasErrors = false;
 
     public  function __construct() {
         $this->species = "";
@@ -23,6 +25,9 @@ class Bird {
             $this->species = $species;
             return true;
         }
+
+        $this->hasErrors=true;
+        return false;
         return false;
     }
 
@@ -31,6 +36,9 @@ class Bird {
             $this->description = $description;
             return true;
         }
+
+        $this->hasErrors=true;
+        return false;
         return false;
     }
 
@@ -45,7 +53,7 @@ class Bird {
     /**
      * @param mixed $sightings
      */
-    public function setSightings($sightings)
+    public function setSighting(Sighting $sightings)
     {
         $this->sightings = $sightings;
     }
@@ -72,6 +80,10 @@ class Bird {
     public function getValidate()
     {
         return $this->validate;
+    }
+
+    public function getHasErrors(){
+        return $this->hasErrors;
     }
 }
 ?>

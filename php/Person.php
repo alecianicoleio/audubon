@@ -5,7 +5,7 @@
  *
  * Order handles data about the total order, and computes the total cost.
  */
-include_once 'Validate.php';
+namespace Audubon;
 
 class Person {
     private $id;
@@ -13,7 +13,8 @@ class Person {
     private $email;
     private $pNumber;
     private $validate;
-    private $sightings;
+    // if there is an error, we will not submit any data to the database
+    private $hasErrors = false;
 
     public function __construct() {
         $this->name = "";
@@ -27,6 +28,8 @@ class Person {
             $this->name = $name;
             return true;
         }
+
+        $this->hasErrors=true;
         return false;
     }
 
@@ -35,6 +38,8 @@ class Person {
             $this->email = $email;
             return true;
         }
+
+        $this->hasErrors=true;
         return false;
     }
 
@@ -43,6 +48,8 @@ class Person {
             $this->pNumber = $pNumber;
             return true;
         }
+
+        $this->hasErrors=true;
         return false;
     }
 
@@ -56,6 +63,10 @@ class Person {
 
     public function getPNumber() {
         return $this->pNumber;
+    }
+
+    public function getHasErrors(){
+        return $this->hasErrors;
     }
 }
 ?>

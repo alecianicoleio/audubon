@@ -5,8 +5,7 @@
  * Date: 11/21/14
  * Time: 1:37 PM
  */
-include_once 'Validate.php';
-include_once 'Person.php';
+namespace Audubon;
 
 class Sighting {
     private $id;
@@ -17,6 +16,8 @@ class Sighting {
     private $person;
     private $bird;
     private $validate;
+    // if there is an error, we will not submit any data to the database
+    private $hasErrors = false;
 
     public function __construct(){
         $this->date="";
@@ -24,6 +25,7 @@ class Sighting {
         $this->city="";
         $this->state="";
         $this->validate = new Validate();
+        $this->hasErrors = false;
     }
 
     public function setDateTime($year, $month, $day, $minute, $hour){
@@ -35,21 +37,26 @@ class Sighting {
             $this->date = $date;
             return true;
         }
-        else
+        else {
+            $this->hasErrors = true;
             return false;
+        }
+
     }
 
     public function getDate(){
         return $this->date->format('Y-m-d H:i:s');
     }
 
-    public function setLocation($location){
-        if($this->validate->valLocation($location)) {
+    public function setLocation($location)
+    {
+        if ($this->validate->valLocation($location)) {
             $this->location = $location;
             return true;
-        }
-        else
+        } else{
+            $this->hasErrors = true;
             return false;
+        }
     }
 
     public function getLocation(){
@@ -61,8 +68,10 @@ class Sighting {
             $this->city = $city;
             return true;
         }
-        else
+        else {
+            $this->hasErrors = true;
             return false;
+        }
     }
 
     public function getCity(){
@@ -74,8 +83,10 @@ class Sighting {
             $this->state = $state;
             return true;
         }
-        else
+        else {
+            $this->hasErrors = true;
             return false;
+        }
     }
 
     public function getState(){
@@ -104,6 +115,10 @@ class Sighting {
 
     public function getPerson(){
         return $this->person;
+    }
+
+    public function getHasErrors(){
+        return $this->hasErrors;
     }
 }
 ?>

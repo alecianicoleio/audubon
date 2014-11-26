@@ -8,17 +8,14 @@
  * @version 11/25/14
  */
 
-
-
-namespace tests;
-
+namespace Audubon;
 
 class BirdTest extends \PHPUnit_Framework_TestCase{
 
     protected $bird;
 
     protected function setUp(){
-        $this->bird = new \Bird();
+        $this->bird = new Bird();
     }
 
     // Test 1

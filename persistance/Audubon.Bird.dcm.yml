@@ -1,4 +1,4 @@
-Bird:
+Audubon\Bird:
   type: entity
   id:
     id:

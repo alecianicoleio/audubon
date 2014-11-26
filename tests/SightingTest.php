@@ -6,14 +6,13 @@
  * Time: 3:34 PM
  */
 
-namespace tests;
-
+namespace Audubon;
 
 class SightingTest {
     protected $sighting;
 
     protected function setUp(){
-        $this->sighting = new \Sighting();
+        $this->sighting = new Sighting();
     }
 
     // Test 1
