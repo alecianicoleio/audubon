@@ -9,12 +9,12 @@
 namespace Audubon;
 use Audubon\Configuration\Configuration as Configuration;
 
-
-class PersonTest extends \PHPUnit_Framework_TestCase{
+class PersonTest extends TestCase{
     protected $person;
     protected $em;
 
     protected function setUp(){
+        parent::setUp();
         $this->person = new Person();
         $config = new Configuration();
         $this->em = $config->getEntityManager();
