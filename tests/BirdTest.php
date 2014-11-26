@@ -17,6 +17,7 @@ class BirdTest extends TestCase{
     protected $em;
 
     protected function setUp(){
+        parent::setUp();
         $this->bird = new Bird();
         $config = new Configuration();
         $this->em = $config->getEntityManager();
