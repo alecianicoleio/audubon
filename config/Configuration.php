@@ -47,7 +47,7 @@ class Configuration{
             'password'  =>  'PASSWORD HERE',
         );
 
-        $dbParams = array_replace($db,$local);
+        $db = array_replace($db,$local);
          */
 
         if (file_exists(dirname(__FILE__) . '/local.php')) {
