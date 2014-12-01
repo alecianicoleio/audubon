@@ -6,7 +6,6 @@
         "classmap": [
             "php",
             "persistance",
-            "MegLaw",
             "config",
             "tests"
         ]
