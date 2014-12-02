@@ -90,8 +90,9 @@ class FormHandler {
         $location = $form['location'];
         $city = $form['city'];
         $state = $form['states'];
+        $ampm = $form['ampm'];
 
-        $sighting->setDateTime($year, $month, $day, $minute, $hour);
+        $sighting->setDateTime($year, $month, $day, $minute, $hour, $ampm);
         $sighting->setLocation($location);
         $sighting->setCity($city);
         $sighting->setState($state);

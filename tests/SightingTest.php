@@ -54,34 +54,42 @@ class SightingTest extends TestCase{
         $date->setTime(10,5,0);
         $date = $date->format('Y-m-d H:i:s');
 
-        $this->sighting->setDateTime("2010","4","20","5","10");
+        $this->sighting->setDateTime("2010","4","20","5","10","am");
         $this->assertEquals($date,$this->sighting->getDate());
 
-        $this->sighting->setDateTime(2010,4,20,5,10);
+        $this->sighting->setDateTime(2010,4,20,5,10, "am");
         $this->assertEquals($date,$this->sighting->getDate());
 
-        $this->sighting->setDateTime("2010",4,20,5,10);
+        $this->sighting->setDateTime("2010",4,20,5,10, "am");
         $this->assertEquals($date,$this->sighting->getDate());
 
-        $this->sighting->setDateTime(2010,"4",20,"5",10);
+        $this->sighting->setDateTime(2010,"4",20,"5",10, "am");
+        $this->assertEquals($date,$this->sighting->getDate());
+
+        // pm check
+        $date = new \DateTime("2010-5-20");
+        $date->setTime(17,5,0);
+        $date = $date->format('Y-m-d H:i:s');
+
+        $this->sighting->setDateTime("2010","4","20","5","5","pm");
         $this->assertEquals($date,$this->sighting->getDate());
  
         // Leap year
         $date = new \DateTime("2000-2-29");
         $date->setTime(10,5,0);
         $date = $date->format('Y-m-d H:i:s');
-        $this->sighting->setDateTime(2000,1,29,5,10);
+        $this->sighting->setDateTime(2000,1,29,5,10, "am");
         $this->assertEquals($date,$this->sighting->getDate());
 
         // should return false (it cannot be null)
-        $this->assertFalse($this->sighting->setDateTime("","","","",""));
+        $this->assertFalse($this->sighting->setDateTime("","","","","", ""));
 
         // should return false (invalid date)
-        $this->assertFalse($this->sighting->setDateTime("a","b","a","c","d"));
-        $this->assertFalse($this->sighting->setDateTime(2010,"b",5,"a","f"));
+        $this->assertFalse($this->sighting->setDateTime("a","b","a","c","d", "m"));
+        $this->assertFalse($this->sighting->setDateTime(2010,"b",5,"a","f", "pm"));
         // Date can't be greater than current date
-        $this->assertFalse($this->sighting->setDateTime(2015,4,20,5,10));
-        $this->assertFalse($this->sighting->setDateTime(2013,1,29,5,10));
+        $this->assertFalse($this->sighting->setDateTime(2015,4,20,5,10,"pm"));
+        $this->assertFalse($this->sighting->setDateTime(2013,1,29,5,10,"pm"));
     }
 
     // Test 4

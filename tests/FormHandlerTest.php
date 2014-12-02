@@ -28,6 +28,7 @@ class FormHandlerTest extends TestCase{
         $this->submission["day"] = "25";
         $this->submission["minute"] = "20";
         $this->submission["hour"] = "5";
+        $this->submission["ampm"] = "pm";
         $this->submission["location"] = "In the air";
         $this->submission["city"] = "Monkey Paradise";
         $this->submission["states"] = "MI";
