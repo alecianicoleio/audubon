@@ -23,20 +23,20 @@ class BirdTest extends TestCase{
     // Test 1
     public function testSetSpecies(){
         // should return true
-        $this->assertTrue($this->bird->setSpecies("Bird",$this->em));
-        $this->assertTrue($this->bird->setSpecies("Big bird",$this->em));
-        $this->assertTrue($this->bird->setSpecies("Penguin",$this->em));
+        $this->assertTrue($this->bird->setSpecies("Bird"));
+        $this->assertTrue($this->bird->setSpecies("Big bird"));
+        $this->assertTrue($this->bird->setSpecies("Penguin"));
 
         // should return false (it cannot be null)
-        $this->assertFalse($this->bird->setSpecies("",$this->em));
+        $this->assertFalse($this->bird->setSpecies(""));
 
         // should return false (cannot contain a number)
-        $this->assertFalse($this->bird->setSpecies("9Bird",$this->em));
-        $this->assertFalse($this->bird->setSpecies("Bird9",$this->em));
-        $this->assertFalse($this->bird->setSpecies("B9rd",$this->em));
-        $this->assertFalse($this->bird->setSpecies("B99rd",$this->em));
-        $this->assertFalse($this->bird->setSpecies("9Bird9",$this->em));
-        $this->assertFalse($this->bird->setSpecies(999,$this->em));
+        $this->assertFalse($this->bird->setSpecies("9Bird"));
+        $this->assertFalse($this->bird->setSpecies("Bird9"));
+        $this->assertFalse($this->bird->setSpecies("B9rd"));
+        $this->assertFalse($this->bird->setSpecies("B99rd"));
+        $this->assertFalse($this->bird->setSpecies("9Bird9"));
+        $this->assertFalse($this->bird->setSpecies(999));
     }
 
     // Test 2
@@ -48,22 +48,6 @@ class BirdTest extends TestCase{
 
         // should return false (it cannot be null)
         $this->assertFalse($this->bird->setDescription(""));
-    }
-
-    // Test 2
-    public function testSetSpeciesDatabaseCheck(){
-        // setup data to test database checks
-        $this->speciesDataSetup();
-
-        // should return true (no entry)
-        $this->assertTrue($this->bird->setSpecies("Bird",$this->em));
-        $this->assertTrue($this->bird->setSpecies("Big bird",$this->em));
-        $this->assertTrue($this->bird->setSpecies("Blob",$this->em));
-
-        // should return false (entry exists)
-        $this->assertFalse($this->bird->setSpecies("penguin",$this->em));
-        $this->assertFalse($this->bird->setSpecies("chicken",$this->em));
-        $this->assertFalse($this->bird->setSpecies("turkey",$this->em));
     }
 
 } 

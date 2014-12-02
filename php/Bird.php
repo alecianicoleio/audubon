@@ -13,22 +13,15 @@ class Bird {
     private $sightings;
     // if there is an error, we will not submit any data to the database
     private $hasErrors = false;
-    // check if object should be submitted to the database (don't submit on duplicate)
-    private $checkSubmit = true;
 
     public  function __construct() {
         $this->species = "";
         $this->description = "";
-        $this->validate = new Validate();
+        $this->validate= new Validate();
     }
 
-    function setSpecies($species,$em) {
+    function setSpecies($species) {
         if($this->validate->valSpecies($species)) {
-            // Species is unique, thus only submit if species doesn't exist in the database
-            if($em->getRepository('Audubon\Bird')->speciesExists($species)){
-                $this->checkSubmit=false;
-                return false;
-            }
 
             $this->species = $species;
             return true;
@@ -75,9 +68,9 @@ class Bird {
     /**
      * @param mixed $validate
      */
-    public function setValidate($validate)
+    public function setValidate()
     {
-        $this->validate = $validate;
+        $this->validate = new Validate();
     }
 
     /**
@@ -90,10 +83,6 @@ class Bird {
 
     public function getHasErrors(){
         return $this->hasErrors;
-    }
-
-    public function getCheckSubmit(){
-        return $this->checkSubmit;
     }
 }
 ?>

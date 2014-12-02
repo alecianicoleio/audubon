@@ -24,7 +24,7 @@ class Sighting {
         $this->location="";
         $this->city="";
         $this->state="";
-        $this->validate = new Validate();
+        $this->validate= new Validate();
         $this->hasErrors = false;
         $this->person;
     }
@@ -110,7 +110,7 @@ class Sighting {
         return $this->bird;
     }
 
-    public function setPerson(Person $person){
+    public function setPerson($person){
         $this->person = $person;
     }
 
@@ -120,6 +120,10 @@ class Sighting {
 
     public function getHasErrors(){
         return $this->hasErrors;
+    }
+
+    public function setValidate(){
+        return $this->validate = new Validate();
     }
 }
 ?>

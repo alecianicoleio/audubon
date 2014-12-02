@@ -25,9 +25,7 @@ class PersonTest extends TestCase{
         $this->assertTrue($this->person->setName("Pete'n'Cool"));
         $this->assertTrue($this->person->setName("topdog52"));
         $this->assertTrue($this->person->setName(555));
-
-        // should return false (it cannot be null)
-        $this->assertFalse($this->person->setName(""));
+        $this->assertTrue($this->person->setName(""));
 
         // should return false (can't be greater then 40 chars)
         $this->assertFalse($this->person->setName("klninedkallnknklnlkklajenalknklnlknckldninfailnklnavnelanlnieie904nnknionane4"));
@@ -36,23 +34,21 @@ class PersonTest extends TestCase{
     // Test 2
     public function testValEmail(){
         // should return true
-        $this->assertTrue($this->person->setEmail("pete@pete.com",$this->em));
-        $this->assertTrue($this->person->setEmail("b@b.edu",$this->em));
-        $this->assertTrue($this->person->setEmail("b42@bloop.net",$this->em));
-        $this->assertTrue($this->person->setEmail("b42@blo42op.net",$this->em));
-        $this->assertTrue($this->person->setEmail("b42@bloop.edu",$this->em));
-        $this->assertTrue($this->person->setEmail("b42@bloop.com",$this->em));
-
-        // should return false (it cannot be null)
-        $this->assertFalse($this->person->setEmail("",$this->em));
+        $this->assertTrue($this->person->setEmail("pete@pete.com"));
+        $this->assertTrue($this->person->setEmail("b@b.edu"));
+        $this->assertTrue($this->person->setEmail("b42@bloop.net"));
+        $this->assertTrue($this->person->setEmail("b42@blo42op.net"));
+        $this->assertTrue($this->person->setEmail("b42@bloop.edu"));
+        $this->assertTrue($this->person->setEmail("b42@bloop.com"));
+        $this->assertTrue($this->person->setEmail(""));
 
         // should return false (invalid email)
-        $this->assertFalse($this->person->setEmail(9464,$this->em));
-        $this->assertFalse($this->person->setEmail("dbie",$this->em));
-        $this->assertFalse($this->person->setEmail("beog.com",$this->em));
-        $this->assertFalse($this->person->setEmail("pizza@yummy",$this->em));
-        $this->assertFalse($this->person->setEmail("pizza@.net",$this->em));
-        $this->assertFalse($this->person->setEmail("wrong",$this->em));
+        $this->assertFalse($this->person->setEmail(9464));
+        $this->assertFalse($this->person->setEmail("dbie"));
+        $this->assertFalse($this->person->setEmail("beog.com"));
+        $this->assertFalse($this->person->setEmail("pizza@yummy"));
+        $this->assertFalse($this->person->setEmail("pizza@.net"));
+        $this->assertFalse($this->person->setEmail("wrong"));
     }
 
     // Test 3
@@ -64,33 +60,12 @@ class PersonTest extends TestCase{
         $this->assertTrue($this->person->setPNumber("(919)9199919"));
         $this->assertTrue($this->person->setPNumber(9199199919));
         $this->assertTrue($this->person->setPNumber(919.9199919));
-
-        // should return false (it cannot be null)
-        $this->assertFalse($this->person->setPNumber(""));
+        $this->assertTrue($this->person->setPNumber(""));
 
         // should return false (invalid pNumber)
         $this->assertFalse($this->person->setPNumber("919-919-999199"));
         $this->assertFalse($this->person->setPNumber("919"));
         $this->assertFalse($this->person->setPNumber("919909909a"));
     }
-
-    // Test 4
-    public function testSetEmailDatabaseCheck(){
-        // setup data to test database checks
-        $this->emailDataSetup();
-
-        // should return true
-        $this->assertTrue($this->person->setEmail("b@b.edu",$this->em));
-        $this->assertTrue($this->person->setEmail("b42@bloop.net",$this->em));
-        $this->assertTrue($this->person->setEmail("b42@blo42op.net",$this->em));
-        $this->assertTrue($this->person->setEmail("b42@bloop.edu",$this->em));
-        $this->assertTrue($this->person->setEmail("b42@bloop.com",$this->em));
-
-        // should return false
-        $this->assertFalse($this->person->setEmail("pete@pete.com",$this->em));
-        $this->assertFalse($this->person->setEmail("definatly@best.com",$this->em));
-        $this->assertFalse($this->person->setEmail("pizza@yummy.edu",$this->em));
-    }
-
 
 } 

@@ -15,13 +15,28 @@ class FormHandler {
         $config = new Configuration();
         $em = $config->getEntityManager();
 
+        // Sighting object needs to be created earlier then the rest of sighting's code, because the setting of person
+        // and bird fields depend on person's/bird's code
+        $sighting = new Sighting();
+
         // Person
         $name = $form['name'];
         $email = $form['email'];
         $phone = $form['phone'];
 
-        $person = new Person();
-        $person->setEmail($email,$em);
+        // if person exists in database, return object, else return false
+        $person = $em->getRepository('Audubon\Person')->emailExists($email);
+
+        // if false, then person does not exist, thus create new person
+        if(!$person){
+            $person = new Person();
+            $person->setEmail($email);
+        }
+        else
+            // the validate field doesn't get correctly setup on the object returned from the database call, thus this line is required
+            $person->setValidate();
+
+        // Set/update person fields
         $person->setName($name);
         $person->setPNumber($phone);
 
@@ -31,28 +46,42 @@ class FormHandler {
             return false;
         }
 
-        // Person is optional, so only submit data if an input was provided.  Also do not submit a duplicate
-        if($person->getEmail()!="" && $person->getPNumber()!="" && $person->getName()!="" && $person->getCheckSubmit()){
+        // Person is optional, so only submit data if an input was provided.
+        if($person->getEmail()!=null || $person->getPNumber()!=null || $person->getName()!=null){
             // Prepare $person for submission to database
             $em->persist($person);
+            $sighting->setPerson($person);
         }
+        else
+            $sighting->setPerson(null);
 
         // Bird
         $species = $form['species'];
         $description = $form['desc'];
 
-        $bird = new Bird();
-        $bird->setDescription($description);
-        $bird->setSpecies($species, $em);
+        // if species exists return object, else return false
+        $bird = $em->getRepository('Audubon\Bird')->speciesExists($species);
 
+        // if false, bird does not exist, thus create a new bird object
+        if(!$bird){
+            $bird = new Bird();
+            $bird->setSpecies($species);
+        }
+        else
+            // the validate field doesn't get correctly setup on the object returned from the database call, thus this line is required
+            $bird->setValidate();
+
+        // Set description for new object or update for existing object
+        $bird->setDescription($description);
+
+        // An error occur, thus stop form submission
         if($bird->getHasErrors()){
             echo "Bird inputs contain an error";
             return false;
         }
 
-        // Prepare $bird for submission to database (don't submit on duplicate)
-        if($bird->getCheckSubmit())
-            $em->persist($bird);
+        // Prepare $bird for submission to database
+        $em->persist($bird);
 
         // Sighting
         $year = $form['year'];
@@ -64,14 +93,11 @@ class FormHandler {
         $city = $form['city'];
         $state = $form['states'];
 
-        $sighting = new Sighting();
         $sighting->setDateTime($year, $month, $day, $minute, $hour);
         $sighting->setLocation($location);
         $sighting->setCity($city);
         $sighting->setState($state);
         $sighting->setBird($bird);
-        $sighting->setPerson($person);
-
 
         if($sighting->getHasErrors()){
             echo "Sighting inputs contain an error";

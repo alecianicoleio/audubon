@@ -157,7 +157,7 @@ class Validate {
 
     public function valName($name) {
         if($name == null){
-            return false;
+            return true;
         }
         if(strlen($name) > 40) {
             return false;
@@ -166,6 +166,9 @@ class Validate {
     }
 
     public function valEmail($email) {
+        if($email == null)
+            return true;
+
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return false;
         }
@@ -173,6 +176,9 @@ class Validate {
     }
 
     public function valPNumber($pNumber) {
+        if($pNumber == null)
+            return true;
+
         // convert to string
         if(preg_match($this->pPattern, $pNumber)) {
             return true;

@@ -9,6 +9,7 @@ Audubon\Bird:
   fields:
     species:
       type: string
+      unique: true
     description:
       type: string
   oneToMany:

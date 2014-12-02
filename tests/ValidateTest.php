@@ -86,9 +86,7 @@ class ValidateTest extends TestCase{
         $this->assertTrue($this->val->valName("Pete"));
         $this->assertTrue($this->val->valName("Pete'n'Cool"));
         $this->assertTrue($this->val->valName("topdog52"));
-
-        // should return false (it cannot be null)
-        $this->assertFalse($this->val->valName(""));
+        $this->assertTrue($this->val->valName(""));
 
         // should return false (can't be greater then 40 chars)
         $this->assertFalse($this->val->valName("klninedkallnknklnlkklajenalknklnlknckldninfailnklnavnelanlnieie904nnknionane4"));
@@ -105,9 +103,7 @@ class ValidateTest extends TestCase{
         $this->assertTrue($this->val->valEmail("b42@blo42op.net"));
         $this->assertTrue($this->val->valEmail("b42@bloop.edu"));
         $this->assertTrue($this->val->valEmail("b42@bloop.com"));
-
-        // should return false (it cannot be null)
-        $this->assertFalse($this->val->valEmail(""));
+        $this->assertTrue($this->val->valEmail(""));
 
         // should return false (invalid email)
         $this->assertFalse($this->val->valEmail(9464));
@@ -129,9 +125,7 @@ class ValidateTest extends TestCase{
         $this->assertTrue($this->val->valPNumber("(919)9199919"));
         $this->assertTrue($this->val->valPNumber(9199199919));
         $this->assertTrue($this->val->valPNumber(919.9199919));
-
-        // should return false (it cannot be null)
-        $this->assertFalse($this->val->valPNumber(""));
+        $this->assertTrue($this->val->valPNumber(""));
 
         // should return false (invalid pNumber)
         $this->assertFalse($this->val->valPNumber("919-919-999199"));
@@ -146,8 +140,6 @@ class ValidateTest extends TestCase{
          * javascript months are from 0-11, but php is 1-12
          * Because of this, valDateTime increments the month by 1
          */
-
-        
 
         // dates should be the same
         // $year, $month, $day, $minute, $hour

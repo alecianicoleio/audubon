@@ -15,7 +15,7 @@ class SightingView {
         $config = new Configuration();
         $em = $config->getEntityManager();
 
-        $sightings = $em->getRepository('Audubon\Sighting')->querySightings();
+        $sightings = $em->getRepository('Audubon\Sighting')->findAll();
 
         if(count($sightings)==0)
             echo "There are no sightings.";
