@@ -73,6 +73,9 @@ class Validate {
 
         $month = "" + (intval($month) + 1);
 
+        if(intval($minute) > 59 || intval($hour) > 23)
+            return false;
+
         $newDate = new DateTime();
         // Attempt to create the date object- if anything is invalid, DateTime() will throw an exeception
         try{

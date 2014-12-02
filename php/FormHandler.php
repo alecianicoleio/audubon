@@ -42,8 +42,7 @@ class FormHandler {
 
         // If there was an error raised during the creation of the class, then don't submit data
         if($person->getHasErrors()){
-            echo "Person inputs contain an error";
-            return false;
+            return "Person inputs contain an error";
         }
 
         // Person is optional, so only submit data if an input was provided.
@@ -76,8 +75,7 @@ class FormHandler {
 
         // An error occur, thus stop form submission
         if($bird->getHasErrors()){
-            echo "Bird inputs contain an error";
-            return false;
+            return "Bird inputs contain an error";
         }
 
         // Prepare $bird for submission to database
@@ -100,8 +98,7 @@ class FormHandler {
         $sighting->setBird($bird);
 
         if($sighting->getHasErrors()){
-            echo "Sighting inputs contain an error";
-            return false;
+            return "Sighting inputs contain an error";
         }
 
         // Prepare $sighting for submission to database
@@ -110,8 +107,7 @@ class FormHandler {
         // Submit persisted data to the database
         $em->flush();
 
-        echo 'saved...';
-        return true;
+        return "Submission Successful";
 
     }
 } 

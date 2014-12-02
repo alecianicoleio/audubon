@@ -10,5 +10,5 @@ require_once(dirname(__FILE__).'/../vendor/autoload.php');
 ini_set('display_errors','on');
 error_reporting(1);
 $formHandler = new Audubon\FormHandler();
-$formHandler->processForm($_POST);
+echo $formHandler->processForm($_POST);
 ?>
