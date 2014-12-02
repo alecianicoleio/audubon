@@ -37,54 +37,75 @@ However, it would be best not to print out the name and contact details of the p
 
 Your aunt's coworker is going to be just thrilled to have your help!
 
-###### Notes
+## Setting up your environment
 
-In order to complete part 2, you should probably begin to use best practices for web development.
+The following will help you set up your project in a way that will let you follow best practices.
 
-First, you will need to install [Composer](https://getcomposer.org/doc/00-intro.md#globally), so that you will be able to easliy manage all the third party dependencies that your app will require.
+First, you will need to [install Composer](https://getcomposer.org/doc/00-intro.md#globally), so that you will be able to easily manage all the third party dependencies that your app will require.
 
-Once composer is installed, you should be able to run `composer install` from the root directory of your repository, and all your third party dependencies will download and install into your project automatically.
+Once composer is installed, run
 
+    composer install
+    
+from the root directory of your repository, which will automatically download and install all your third party dependencies into your project.
+
+### Unit tests
 Second, since all great developers use unit testing to verify their code is working properly, you will probably want to install PHPUnit.
 
 Since we are all linuxy and stuff, it's really easy to do through terminal:
 
-`sudo apt-get install PHPUnit`
+    sudo apt-get install PHPUnit
 
-Now you should be able to *start unit testing*! Just use the command `phpunit` from  the root directory of your repository, and all the unit tests will run and tell you everything wrong with your code :)
+Now you should be able to *start unit testing*! From the root directory of your repository, just use
 
-Third, you will probably need some sort of persistance or storage solution, so that you can list out all the sightings that your aunt's coworker website tracks.
+    phpunit
 
-Luckily, you will be able to do this process relatively easily. Open MySQL command line interface using `mysql -u 'your-username' -p`.
+to run all the unit tests and see everything broken (or working!) in your code. :)
 
-> NOTE: Your username is probably 'root', unless you took the time to make your local database extra secure.
+### Persistence
+Third, you will probably need some sort of persistence or storage solution, so that you can list out all the sightings that your aunt's coworker's website tracks.  Luckily, you will be able to do this process relatively easily.  To open the MySQL command line interface, run
+    
+    mysql -u 'your-username' -p
 
-Once inside of the MySQL CLI, just run `create database audubon;`. Finally, `exit` from MySQL.
+> Your username is probably 'root', unless you took the time to make your local database extra secure.
 
-Finally, you will need to set up our [ORM](en.wikipedia.org/wiki/Object-relational_mapping), which will allow us to obfuscate our database access, and make us not directly access our database in our code.
+From inside the MySQL CLI, create the Audubon database by running
+    
+    create database audubon;
+    
+This creates an empty database ready to be loaded with tables, which will be handled in the next step.  You can now run `exit` to leave MySQL.
 
-To Set up Doctrine (ORM), you need to complete two steps.
+#### Setting up the ORM
 
-In the config folder, create a new file called *local.php*. Copy the following code into it, changing the *YOUR-DATABASE-PASSWORD-HERE* to your actual database password.
+Finally, you will need to set up an [ORM](en.wikipedia.org/wiki/Object-relational_mapping), which is a framework (in our case, a PHP framework) that accesses the database for us.  This is a preferable alternative to mixing MySQL queries with our business logic.
+
+An ORM framework called Doctrine has already been installed for you by Composer, but you still need to configure and run it.
+
+In the `config/` folder, create a new file called `local.php`. Copy the following code into it, changing `*YOUR-DATABASE-PASSWORD-HERE*` to your actual MySQL password.
 
     <?php
-
+    
      $local = array(
          'password'  =>  '*YOUR-DATABASE-PASSWORD-HERE*',
      );
 
-     $dbParams = array_replace($db,$local);
+     $db = array_replace($db,$local);
 
      ?>
 
-Don't worry, your changes will not be tracked, so no one else will be able to see your password.
+This `config/local.php` file is gitignored, so no one else will be able to see your password.
 
-Once your database password has been updated, you will need to use Doctrine's cool CLI to generate your database. From the root directory of your repository run:
+Once your password has been updated, Doctrine is now configured to be able to access your Audubon database. You can use the Doctrine CLI to generate your database tables. From the root directory of your repository, run
 
-`php vendor/bin/doctrine orm:schema-tool:create`
+    php vendor/bin/doctrine orm:schema-tool:create
 
-If all goes well, you should now be wired in to use the database to save your data!
+If all went well, you should now have a working database!  Log back in to MySQL and run
+    
+    use Audubon;
+    show tables;
+    
+to check out what Doctrine did for you.
 
-It would probably be beneficial at this point to read [here](http://doctrine-orm.readthedocs.org/en/latest/reference/working-with-objects.html) to figure out how to save and retrieve records using Doctrine's entity manager and repositories.
+At this point you may find the [Doctrine documentation](http://doctrine-orm.readthedocs.org/en/latest/reference/working-with-objects.html) helpful to figure out how to save and retrieve records.
 
-That should be it!
+That's it!
