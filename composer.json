@@ -7,6 +7,8 @@
             "php",
             "persistance",
             "config",
+            "js",
+            "css",
             "tests"
         ]
     },
