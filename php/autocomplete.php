@@ -5,7 +5,7 @@
  */
 
 namespace Audubon;
-require_once '/vendor/autoload.php';
+require_once '../vendor/autoload.php';
 use Audubon\Configuration\Configuration as Configuration;
 
 // prevent direct access
@@ -19,7 +19,6 @@ if(!$isAjax) {
 // get what user typed in autocomplete input
 $term = trim($_GET['term']);
 
-$a_json = array();
 $a_json_row = array();
 
 $a_json_invalid = array(array("id" => "#", "value" => $term, "label" => "Only letters and digits are permitted..."));
@@ -42,7 +41,7 @@ $birds = $em->getRepository('Audubon\Bird')->findAll();
 $a_json = array();
 
 foreach($birds as $bird){
-    array_push($a_json, $bird->getBird()->getSpecies());
+    array_push($a_json, $bird->getSpecies());
 }
 
 $json = json_encode($a_json);
