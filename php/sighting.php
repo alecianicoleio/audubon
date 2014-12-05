@@ -41,14 +41,12 @@ $(document).ready(function() {
             </div>
 
             <!-- Select boxes -->
-            <div>
+            <div class="select-style">
                 <label class="label">Species:</label><select class="species" name="species">
                     <option value="selected">Select species</option>
                     <?php echo implode("\n", $specieOptions); ?>
                 </select>
-            </div>
 
-            <div>
                 <label class="label">Location:</label><select class="location" name="location">
                     <option value="selected">Select location</option>
                     <?php echo implode("\n", $locationOptions); ?>
