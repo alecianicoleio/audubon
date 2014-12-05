@@ -17,7 +17,7 @@ if(!$isAjax) {
 }
 
 // get what user typed in autocomplete input
-$term = trim($_GET['term']);
+$term = trim($_GET['query']);
 
 $a_json_row = array();
 
@@ -44,6 +44,7 @@ foreach($birds as $bird){
     array_push($a_json, $bird->getSpecies());
 }
 
-$json = json_encode($a_json);
+$json = json_encode(array("query" => "Unit",
+                          "suggestions" => $a_json));
 print $json;
 ?>
