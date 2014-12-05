@@ -41,7 +41,7 @@ $(document).ready(function() {
             </div>
 
             <!-- Select boxes -->
-            <div>
+            <p>
                 <label class="label">Species:</label>
                 <div class="select-style">
                     <select class="species" name="species">
@@ -49,7 +49,8 @@ $(document).ready(function() {
                         <?php echo implode("\n", $specieOptions); ?>
                     </select>
                 </div>
-
+            </p>
+            <p>
                 <label class="label">Location:</label>
                 <div class="select-style">
                     <select class="location" name="location">
@@ -60,11 +61,12 @@ $(document).ready(function() {
             </div>
             <!-- End Sighting Info -->
 
-            <div>
+            </p>
                 <input type="submit" value="Submit" />
             </div>
         </form>
     </div>
+    <hr>
     <results>
     </results>
 </body>
