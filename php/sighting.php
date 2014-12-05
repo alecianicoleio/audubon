@@ -41,16 +41,22 @@ $(document).ready(function() {
             </div>
 
             <!-- Select boxes -->
-            <div class="select-style">
-                <label class="label">Species:</label><select class="species" name="species">
-                    <option value="selected">Select species</option>
-                    <?php echo implode("\n", $specieOptions); ?>
-                </select>
+            <div>
+                <label class="label">Species:</label>
+                <div class="select-style">
+                    <select class="species" name="species">
+                        <option value="selected">Select species</option>
+                        <?php echo implode("\n", $specieOptions); ?>
+                    </select>
+                </div>
 
-                <label class="label">Location:</label><select class="location" name="location">
-                    <option value="selected">Select location</option>
-                    <?php echo implode("\n", $locationOptions); ?>
-                </select>
+                <label class="label">Location:</label>
+                <div class="select-style">
+                    <select class="location" name="location">
+                        <option value="selected">Select location</option>
+                        <?php echo implode("\n", $locationOptions); ?>
+                    </select>
+                </div>
             </div>
             <!-- End Sighting Info -->
 
