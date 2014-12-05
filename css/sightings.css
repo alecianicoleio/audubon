@@ -1,14 +1,17 @@
 /*
 Add slightly more space between divs and add a centering affect (margin: auto)
 */
-
 div {
+  float: left;
   margin-top: 3px;
   width: 300px;
   margin-right: auto;
   margin-left: auto;
 }
 
+hr {
+  clear:both;
+  }
 /*
 Set the outer div (main) to a width of 80% and add a centering affect (margin: auto)
 */
