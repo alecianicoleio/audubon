@@ -35,13 +35,11 @@ $(document).ready(function() {
 
 <body>
     <div class="main">
-        <form action="">
-            <div>
+        <form action="php/sightingSubmit.php">
                 <legend class="formtitle">Sightings</legend>
-            </div>
 
             <!-- Select boxes -->
-            <p>
+            <div>
                 <label class="label">Species:</label>
                 <div class="select-style">
                     <select class="species" name="species">
@@ -49,8 +47,8 @@ $(document).ready(function() {
                         <?php echo implode("\n", $specieOptions); ?>
                     </select>
                 </div>
-            </p>
-            <p>
+            </div>
+            <div>
                 <label class="label">Location:</label>
                 <div class="select-style">
                     <select class="location" name="location">
@@ -61,13 +59,15 @@ $(document).ready(function() {
             </div>
             <!-- End Sighting Info -->
 
-            </p>
+            <div>
                 <input type="submit" value="Submit" />
             </div>
         </form>
     </div>
+    <br>
     <hr>
     <results>
+
     </results>
 </body>
 </html>
