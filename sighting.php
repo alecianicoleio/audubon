@@ -1,6 +1,5 @@
 <?php
-namespace Audubon;
-require_once '../vendor/autoload.php';
+require_once 'vendor/autoload.php';
 use Audubon\Configuration\Configuration as Configuration;
 
 $config = new Configuration();
@@ -64,10 +63,11 @@ $(document).ready(function() {
             </div>
         </form>
     </div>
-    <br>
     <hr>
     <results>
+    <?php
 
+    ?>
     </results>
 </body>
 </html>
