@@ -65,13 +65,20 @@ class Validate {
 );
 
 
-    public function valDateTime($year, $month, $day, $minute, $hour){
+    public function valDateTime($year, $month, $day, $minute, $hour, $ampm){
         // Cannot be empty
-        if($year == null || $month == null || $day == null || $minute == null || $hour == null) {
+        if($year == null || $month == null || $day == null || $minute == null || $hour == null || $ampm == null) {
             return false;
         }
 
+        // must be am or pm
+        if($ampm != "am" && $ampm != "pm")
+            return false;
+
         $month = "" + (intval($month) + 1);
+
+        if($ampm == "pm")
+            $hour = "" + (intval($hour) + 12);
 
         if(intval($minute) > 59 || intval($hour) > 23)
             return false;

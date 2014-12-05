@@ -1,5 +1,5 @@
-.idea
-.swp
+.idea/
+*.swp
 composer.lock
 vendor/
 config/local.php

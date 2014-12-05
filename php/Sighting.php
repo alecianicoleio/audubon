@@ -29,9 +29,9 @@ class Sighting {
         $this->person;
     }
 
-    public function setDateTime($year, $month, $day, $minute, $hour){
+    public function setDateTime($year, $month, $day, $minute, $hour, $ampm){
         // $date will be a DateTime object or false if there is an error
-        $date = $this->validate->valDateTime($year, $month, $day, $minute, $hour);
+        $date = $this->validate->valDateTime($year, $month, $day, $minute, $hour, $ampm);
 
         // if $date is not false, then it is a valid DateTime object
         if($date) {

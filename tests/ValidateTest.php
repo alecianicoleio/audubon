@@ -145,24 +145,30 @@ class ValidateTest extends TestCase{
         // $year, $month, $day, $minute, $hour
         $date = new \DateTime("2010-5-20");
         $date->setTime(10,5,0);
-        $this->assertEquals($date,$this->val->valDateTime("2010","4","20","5","10"));
-        $this->assertEquals($date,$this->val->valDateTime(2010,4,20,5,10));
-        $this->assertEquals($date,$this->val->valDateTime("2010",4,20,5,10));
-        $this->assertEquals($date,$this->val->valDateTime(2010,"4",20,"5",10));
+        $this->assertEquals($date,$this->val->valDateTime("2010","4","20","5","10", "am"));
+        $this->assertEquals($date,$this->val->valDateTime(2010,4,20,5,10, "am"));
+        $this->assertEquals($date,$this->val->valDateTime("2010",4,20,5,10, "am"));
+        $this->assertEquals($date,$this->val->valDateTime(2010,"4",20,"5",10, "am"));
+
+        // pm test
+        $date = new \DateTime("2010-5-20");
+        $date->setTime(17,5,0);
+        $this->assertEquals($date,$this->val->valDateTime("2010","4","20","5","5", "pm"));
+
         // Leap year
         $date = new \DateTime("2000-2-29");
         $date->setTime(10,5,0);
-        $this->assertEquals($date,$this->val->valDateTime(2000,1,29,5,10));
+        $this->assertEquals($date,$this->val->valDateTime(2000,1,29,5,10, "am"));
 
         // should return false (it cannot be null)
-        $this->assertFalse($this->val->valDateTime("","","","",""));
+        $this->assertFalse($this->val->valDateTime("","","","","", ""));
 
         // should return false (invalid date)
-        $this->assertFalse($this->val->valDateTime("a","b","a","c","d"));
-        $this->assertFalse($this->val->valDateTime(2010,"b",5,"a","f"));
+        $this->assertFalse($this->val->valDateTime("a","b","a","c","d", "dm"));
+        $this->assertFalse($this->val->valDateTime(2010,"b",5,"a","f", "pm"));
         // Date can't be greater than current date
-        $this->assertFalse($this->val->valDateTime(2015,4,20,5,10));
-        $this->assertFalse($this->val->valDateTime(2013,1,29,5,10));
+        $this->assertFalse($this->val->valDateTime(2015,4,20,5,10, "pm"));
+        $this->assertFalse($this->val->valDateTime(2013,1,29,5,10, "pm"));
     }
 
     // Test 2
