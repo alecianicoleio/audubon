@@ -21,7 +21,7 @@ $locationOptions = array_unique($locationOptions);
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="css/sightings.css" rel="stylesheet" type="text/css" />
+    <link href="/css/sightings.css" rel="stylesheet" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script type="text/javascript">
