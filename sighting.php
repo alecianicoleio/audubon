@@ -1,20 +1,28 @@
 <?php
 require_once 'vendor/autoload.php';
 use Audubon\Configuration\Configuration as Configuration;
+ini_set('display_errors','on');
+error_reporting(1);
 
 $config = new Configuration();
 $em = $config->getEntityManager();
-$birds = $em->getRepository('Audubon\Bird')->findAll();
 $sightings = $em->getRepository('Audubon\Sighting')->findAll();
 
-foreach ( $birds as $bird ) {
-    $specieOptions[] = "<option value='{$bird->getSpecies()}'>{$bird->getSpecies()}</option>";
-}
 foreach ( $sightings as $sighting ) {
+    $specieOptions[] = "<option value='{$sighting->getBird()->getSpecies()}'>{$sighting->getBird()->getSpecies()}</option>";
     $locationOptions[] = "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>";
 }
+
 //Because locations isn't a primary key, there can have multiples, so it needs to be removed.
 $locationOptions = array_unique($locationOptions);
+$specieOptions = array_unique($specieOptions);
+
+//To load the results page
+$locationQuery = $_GET['location'];
+$speciesQuery = $_GET['species'];
+
+$bird = $em->getRepository('Audubon\Bird')->findby(array('species' => $speciesQuery));
+$newSightings = $em->getRepository('Audubon\Sighting')->findby(array('location' => $locationQuery, 'bird_id' => $bird->getID()));
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +42,7 @@ $(document).ready(function() {
 
 <body>
     <div class="main">
-        <form action="php/sightingSubmit.php">
+        <form method="get">
                 <legend class="formtitle">Sightings</legend>
 
             <!-- Select boxes -->
