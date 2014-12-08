@@ -76,6 +76,18 @@ $(document).ready(function() {
     <hr>
     <results>
     <?php
+
+    if(strlen($locationQuery) < 1 and strlen($speciesQuery) < 1){
+        foreach ( $sightings as $sighting ) {
+            echo "Date: " . $sighting->getDate() . "<br>";
+            echo "Location: " . $sighting->getLocation() . "<br>";
+            echo "City: " . $sighting->getCity() . "<br>";
+            echo "State: " . $sighting->getState() . "<br>";
+            echo "Species: " . $sighting->getBird()->getSpecies() . "<br>";
+            echo "Description: " .$sighting->getBird()->getDescription() ."<br>";
+            echo "<br>";
+        }
+    } else {
         foreach ( $newSightings as $sighting ) {
             echo "Date: " . $sighting->getDate() . "<br>";
             echo "Location: " . $sighting->getLocation() . "<br>";
@@ -85,6 +97,8 @@ $(document).ready(function() {
             echo "Description: " .$sighting->getBird()->getDescription() ."<br>";
             echo "<br>";
         }
+}
+
     ?>
     </results>
 </body>
