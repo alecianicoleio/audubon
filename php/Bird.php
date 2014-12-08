@@ -84,5 +84,9 @@ class Bird {
     public function getHasErrors(){
         return $this->hasErrors;
     }
+
+    public function getID(){
+        return $this->id;
+    }
 }
 ?>
