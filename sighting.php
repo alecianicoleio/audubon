@@ -74,32 +74,28 @@ $(document).ready(function() {
         </form>
     </div>
     <hr>
-    <results>
     <?php
-
-    if(strlen($locationQuery) < 1 and strlen($speciesQuery) < 1){
-        foreach ( $sightings as $sighting ) {
-            echo "Date: " . $sighting->getDate() . "<br>";
-            echo "Location: " . $sighting->getLocation() . "<br>";
-            echo "City: " . $sighting->getCity() . "<br>";
-            echo "State: " . $sighting->getState() . "<br>";
-            echo "Species: " . $sighting->getBird()->getSpecies() . "<br>";
-            echo "Description: " .$sighting->getBird()->getDescription() ."<br>";
-            echo "<br>";
+        if(strlen($locationQuery) < 1 and strlen($speciesQuery) < 1){
+            foreach ( $sightings as $sighting ) {
+                echo "<p>Date: " . $sighting->getDate() . "<br>";
+                echo "Location: " . $sighting->getLocation() . "<br>";
+                echo "City: " . $sighting->getCity() . "<br>";
+                echo "State: " . $sighting->getState() . "<br>";
+                echo "Species: " . $sighting->getBird()->getSpecies() . "<br>";
+                echo "Description: " .$sighting->getBird()->getDescription() ."<br>";
+                echo "</p>";
+            }
+        } else {
+            foreach ( $newSightings as $sighting ) {
+                echo "<p>Date: " . $sighting->getDate() . "<br>";
+                echo "Location: " . $sighting->getLocation() . "<br>";
+                echo "City: " . $sighting->getCity() . "<br>";
+                echo "State: " . $sighting->getState() . "<br>";
+                echo "Species: " . $sighting->getBird()->getSpecies() . "<br>";
+                echo "Description: " .$sighting->getBird()->getDescription() ."<br>";
+                echo "</p>";
+            }
         }
-    } else {
-        foreach ( $newSightings as $sighting ) {
-            echo "Date: " . $sighting->getDate() . "<br>";
-            echo "Location: " . $sighting->getLocation() . "<br>";
-            echo "City: " . $sighting->getCity() . "<br>";
-            echo "State: " . $sighting->getState() . "<br>";
-            echo "Species: " . $sighting->getBird()->getSpecies() . "<br>";
-            echo "Description: " .$sighting->getBird()->getDescription() ."<br>";
-            echo "<br>";
-        }
-}
-
     ?>
-    </results>
 </body>
 </html>
