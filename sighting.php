@@ -37,10 +37,8 @@ foreach ( $sightings as $sighting ) {
     }
 
     if($sighting->getLocation() == $locationQuery){
-        echo "-".$sighting->getLocation() . "=<br>";
         $locatFound = 1;
         array_unshift($locationOptions, "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>");
-        echo var_dump($locationOptions);
     }else{
         $locationOptions[] = "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>";
     }
