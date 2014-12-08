@@ -16,13 +16,15 @@ foreach ( $sightings as $sighting ) {
 //Because locations isn't a primary key, there can have multiples, so it needs to be removed.
 $locationOptions = array_unique($locationOptions);
 $specieOptions = array_unique($specieOptions);
-
-//To load the results page
-$locationQuery = $_GET['location'];
-$speciesQuery = $_GET['species'];
-
-$bird = $em->getRepository('Audubon\Bird')->findoneby(array('species' => $speciesQuery));
-$newSightings = $em->getRepository('Audubon\Sighting')->findby(array('location' => $locationQuery, 'bird' => $bird->getID()));
+if(!empty($_GET)){
+    //To load the results page
+    $locationQuery = $_GET['location'];
+    $speciesQuery = $_GET['species'];
+    if(strlen($locationQuery) > 0 and strlen($speciesQuery) > 0){
+        $bird = $em->getRepository('Audubon\Bird')->findoneby(array('species' => $speciesQuery));
+        $newSightings = $em->getRepository('Audubon\Sighting')->findby(array('location' => $locationQuery, 'bird' => $bird->getID()));
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +52,7 @@ $(document).ready(function() {
                 <label class="label">Species:</label>
                 <div class="select-style">
                     <select class="species" name="species">
-                        <option value="selected">Select species</option>
+                        <option value="" >Select species</option>
                         <?php echo implode("\n", $specieOptions); ?>
                     </select>
                 </div>
@@ -59,7 +61,7 @@ $(document).ready(function() {
                 <label class="label">Location:</label>
                 <div class="select-style">
                     <select class="location" name="location">
-                        <option value="selected">Select location</option>
+                        <option value="">Select location</option>
                         <?php echo implode("\n", $locationOptions); ?>
                     </select>
                 </div>
