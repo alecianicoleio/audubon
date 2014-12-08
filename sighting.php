@@ -6,7 +6,6 @@ error_reporting(1);
 
 $config = new Configuration();
 $em = $config->getEntityManager();
-$sightings = $em->getRepository('Audubon\Sighting')->findAll();
 
 if(!empty($_GET)){
     //To load the results page
@@ -26,40 +25,19 @@ if(!empty($_GET)){
     }
 }
 
-
-/* First attempt:
- * Worked for all cases fro Megan, had errors on Lawrence's computer with 'Brevorty Campground' not going into the array.  Being refactrored to two queries to generate the list.
+$sightings = $em->getRepository('Audubon\Sighting')->findAll();
+$sel = '';
 foreach ( $sightings as $sighting ) {
-    if($sighting->getBird()->getSpecies() == $speciesQuery){
-        $specFound = 1;
-        array_unshift($specieOptions, "<option value='{$sighting->getBird()->getSpecies()}'>{$sighting->getBird()->getSpecies()}</option>");
-    }else{
-        $specieOptions[] = "<option value='{$sighting->getBird()->getSpecies()}'>{$sighting->getBird()->getSpecies()}</option>";
-    }
-
-    if($sighting->getLocation() == $locationQuery){
-        $locatFound = 1;
-        array_unshift($locationOptions, "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>");
-    }else{
-        $locationOptions[] = "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>";
-    }
+    $sel = $sighting->getBird()->getSpecies() == $speciesQuery ? 'selected' : '';
+    $specieOptions[] = "<option value='{$sighting->getBird()->getSpecies()}' selected='{$sel}'>{$sighting->getBird()->getSpecies()}</option>";
+    $sel = ($sighting->getLocation() == $locationQuery ? 'selected' : '');
+    $locationOptions[] = "<option value='{$sighting->getLocation()}' selected='{$sel}'>{$sighting->getLocation()}</option>";
 }
 
 
 //Because locations isn't a primary key, there can have multiples, so it needs to be removed.
 $locationOptions = array_unique($locationOptions);
 $specieOptions = array_unique($specieOptions);
-
-if($specFound){
-    array_push($specieOptions, "<option value=''>Select Species</option>");
-}else{
-    array_unshift($specieOptions, "<option value=''>Select Species</option>");
-}
-if($locatFound){
-    array_push($locationOptions, "<option value=''>Select Location</option>");
-}else{
-    array_unshift($locationOptions, "<option value=''>Select Location</option>");
-}*/
 ?>
 
 <!DOCTYPE html>
@@ -87,6 +65,7 @@ $(document).ready(function() {
                 <label class="label">Species:</label>
                 <div class="select-style">
                     <select class="species" name="species">
+                        <option value=''>Select Species</option>
                         <?php echo implode("\n", $specieOptions); ?>
                     </select>
                 </div>
@@ -95,6 +74,7 @@ $(document).ready(function() {
                 <label class="label">Location:</label>
                 <div class="select-style">
                     <select class="location" name="location">
+                        <option value=''>Select Location</option>
                         <?php echo implode("\n", $locationOptions); ?>
                     </select>
                 </div>
