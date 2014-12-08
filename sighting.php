@@ -31,15 +31,21 @@ $specFound = 0;
 foreach ( $sightings as $sighting ) {
     if($sighting->getBird()->getSpecies() == $speciesQuery){
         $specFound = 1;
-    }
-    if($sighting->getLocation() == $locationQuery){
-        $locatFound = 1;
+        array_unshift($specieOptions, "<option value='{$sighting->getBird()->getSpecies()}'>{$sighting->getBird()->getSpecies()}</option>");
+    }else{
+        $specieOptions[] = "<option value='{$sighting->getBird()->getSpecies()}'>{$sighting->getBird()->getSpecies()}</option>";
     }
 
-    $specieOptions[] = "<option value='{$sighting->getBird()->getSpecies()}'>{$sighting->getBird()->getSpecies()}</option>";
-    $locationOptions[] = "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>";
-    $firstIter = 0;
+    if($sighting->getLocation() == $locationQuery){
+        echo "-".$sighting->getLocation() . "=<br>";
+        $locatFound = 1;
+        array_unshift($locationOptions, "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>");
+        echo var_dump($locationOptions);
+    }else{
+        $locationOptions[] = "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>";
+    }
 }
+
 
 //Because locations isn't a primary key, there can have multiples, so it needs to be removed.
 $locationOptions = array_unique($locationOptions);
