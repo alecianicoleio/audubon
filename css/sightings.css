@@ -59,9 +59,9 @@ legend {
 }
 
 p {
+    float: left;
     font-family: arial;
     border: 1px solid #000;
     width: 20em;
-    border-radius: 3px;
-    overflow: hidden;
+    border-radius: 5px;
 }
