@@ -60,8 +60,10 @@ legend {
 
 p {
     float: left;
+    margin: 0.5em;
     font-family: arial;
     border: 1px solid #000;
     width: 20em;
     border-radius: 5px;
+    overflow: hidden;
 }
