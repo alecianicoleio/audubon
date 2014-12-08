@@ -29,9 +29,9 @@ $sightings = $em->getRepository('Audubon\Sighting')->findAll();
 $sel = '';
 foreach ( $sightings as $sighting ) {
     $sel = $sighting->getBird()->getSpecies() == $speciesQuery ? 'selected' : '';
-    $specieOptions[] = "<option value='{$sighting->getBird()->getSpecies()}' selected='{$sel}'>{$sighting->getBird()->getSpecies()}</option>";
+    $specieOptions[] = "<option value='{$sighting->getBird()->getSpecies()}' {$sel}>{$sighting->getBird()->getSpecies()}</option>";
     $sel = ($sighting->getLocation() == $locationQuery ? 'selected' : '');
-    $locationOptions[] = "<option value='{$sighting->getLocation()}' selected='{$sel}'>{$sighting->getLocation()}</option>";
+    $locationOptions[] = "<option value='{$sighting->getLocation()}' {$sel}>{$sighting->getLocation()}</option>";
 }
 
 
