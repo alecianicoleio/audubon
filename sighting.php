@@ -8,14 +8,6 @@ $config = new Configuration();
 $em = $config->getEntityManager();
 $sightings = $em->getRepository('Audubon\Sighting')->findAll();
 
-foreach ( $sightings as $sighting ) {
-    $specieOptions[] = "<option value='{$sighting->getBird()->getSpecies()}'>{$sighting->getBird()->getSpecies()}</option>";
-    $locationOptions[] = "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>";
-}
-
-//Because locations isn't a primary key, there can have multiples, so it needs to be removed.
-$locationOptions = array_unique($locationOptions);
-$specieOptions = array_unique($specieOptions);
 if(!empty($_GET)){
     //To load the results page
     $locationQuery = $_GET['location'];
@@ -32,6 +24,36 @@ if(!empty($_GET)){
         $bird = $em->getRepository('Audubon\Bird')->findoneby(array('species' => $speciesQuery));
         $newSightings = $em->getRepository('Audubon\Sighting')->findby(array('location' => $locationQuery, 'bird' => $bird->getID()));
     }
+}
+
+$locatFound = 0;
+$specFound = 0;
+foreach ( $sightings as $sighting ) {
+    if($sighting->getBird()->getSpecies() == $speciesQuery){
+        $specFound = 1;
+    }
+    if($sighting->getLocation() == $locationQuery){
+        $locatFound = 1;
+    }
+
+    $specieOptions[] = "<option value='{$sighting->getBird()->getSpecies()}'>{$sighting->getBird()->getSpecies()}</option>";
+    $locationOptions[] = "<option value='{$sighting->getLocation()}'>{$sighting->getLocation()}</option>";
+    $firstIter = 0;
+}
+
+//Because locations isn't a primary key, there can have multiples, so it needs to be removed.
+$locationOptions = array_unique($locationOptions);
+$specieOptions = array_unique($specieOptions);
+
+if($specFound){
+    array_push($specieOptions, "<option value=''>Select Species</option>");
+}else{
+    array_unshift($specieOptions, "<option value=''>Select Species</option>");
+}
+if($locatFound){
+    array_push($locationOptions, "<option value=''>Select Location</option>");
+}else{
+    array_unshift($locationOptions, "<option value=''>Select Location</option>");
 }
 ?>
 
@@ -60,7 +82,6 @@ $(document).ready(function() {
                 <label class="label">Species:</label>
                 <div class="select-style">
                     <select class="species" name="species">
-                        <option value="" >Select species</option>
                         <?php echo implode("\n", $specieOptions); ?>
                     </select>
                 </div>
@@ -69,7 +90,6 @@ $(document).ready(function() {
                 <label class="label">Location:</label>
                 <div class="select-style">
                     <select class="location" name="location">
-                        <option value="">Select location</option>
                         <?php echo implode("\n", $locationOptions); ?>
                     </select>
                 </div>
