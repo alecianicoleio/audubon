@@ -20,6 +20,14 @@ if(!empty($_GET)){
     //To load the results page
     $locationQuery = $_GET['location'];
     $speciesQuery = $_GET['species'];
+
+    if(strlen($locationQuery) > 0 and strlen($speciesQuery) < 1){
+        $newSightings = $em->getRepository('Audubon\Sighting')->findby(array('location' => $locationQuery));
+    }
+    if(strlen($locationQuery) < 1 and strlen($speciesQuery) > 0){
+        $bird = $em->getRepository('Audubon\Bird')->findoneby(array('species' => $speciesQuery));
+        $newSightings = $em->getRepository('Audubon\Sighting')->findby(array('bird' => $bird->getID()));
+    }
     if(strlen($locationQuery) > 0 and strlen($speciesQuery) > 0){
         $bird = $em->getRepository('Audubon\Bird')->findoneby(array('species' => $speciesQuery));
         $newSightings = $em->getRepository('Audubon\Sighting')->findby(array('location' => $locationQuery, 'bird' => $bird->getID()));
