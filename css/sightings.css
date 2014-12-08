@@ -58,3 +58,10 @@ legend {
   font-weight: 800;
 }
 
+p {
+    font-family: arial;
+    border: 1px solid #000;
+    width: 20em;
+    border-radius: 3px;
+    overflow: hidden;
+}
