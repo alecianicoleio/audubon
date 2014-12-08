@@ -26,8 +26,9 @@ if(!empty($_GET)){
     }
 }
 
-$locatFound = 0;
-$specFound = 0;
+
+/* First attempt:
+ * Worked for all cases fro Megan, had errors on Lawrence's computer with 'Brevorty Campground' not going into the array.  Being refactrored to two queries to generate the list.
 foreach ( $sightings as $sighting ) {
     if($sighting->getBird()->getSpecies() == $speciesQuery){
         $specFound = 1;
@@ -58,7 +59,7 @@ if($locatFound){
     array_push($locationOptions, "<option value=''>Select Location</option>");
 }else{
     array_unshift($locationOptions, "<option value=''>Select Location</option>");
-}
+}*/
 ?>
 
 <!DOCTYPE html>
