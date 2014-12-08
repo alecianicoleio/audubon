@@ -74,6 +74,7 @@ $(document).ready(function() {
         </form>
     </div>
     <hr>
+    <result>
     <?php
         if(strlen($locationQuery) < 1 and strlen($speciesQuery) < 1){
             foreach ( $sightings as $sighting ) {
@@ -97,5 +98,6 @@ $(document).ready(function() {
             }
         }
     ?>
+    </result>
 </body>
 </html>
