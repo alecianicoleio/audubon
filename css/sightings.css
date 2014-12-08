@@ -11,13 +11,14 @@ div {
 
 hr {
   clear:both;
-  }
+}
 /*
 Set the outer div (main) to a width of 80% and add a centering affect (margin: auto)
 */
 .main {
   width: 80%;
   margin: auto;
+  background-image: url("http://fc08.deviantart.net/fs71/i/2014/084/1/1/pidgey___pidgeotto___pidgeot_by_mrredbutcher-d7bkmvv.jpg");
 }
 
 /*
