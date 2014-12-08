@@ -21,8 +21,8 @@ $specieOptions = array_unique($specieOptions);
 $locationQuery = $_GET['location'];
 $speciesQuery = $_GET['species'];
 
-$bird = $em->getRepository('Audubon\Bird')->findby(array('species' => $speciesQuery));
-$newSightings = $em->getRepository('Audubon\Sighting')->findby(array('location' => $locationQuery, 'bird_id' => $bird->getID()));
+$bird = $em->getRepository('Audubon\Bird')->findoneby(array('species' => $speciesQuery));
+$newSightings = $em->getRepository('Audubon\Sighting')->findby(array('location' => $locationQuery, 'bird' => $bird->getID()));
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +74,15 @@ $(document).ready(function() {
     <hr>
     <results>
     <?php
-
+        foreach ( $newSightings as $sighting ) {
+            echo "Date: " . $sighting->getDate() . "<br>";
+            echo "Location: " . $sighting->getLocation() . "<br>";
+            echo "City: " . $sighting->getCity() . "<br>";
+            echo "State: " . $sighting->getState() . "<br>";
+            echo "Species: " . $sighting->getBird()->getSpecies() . "<br>";
+            echo "Description: " .$sighting->getBird()->getDescription() ."<br>";
+            echo "<br>";
+        }
     ?>
     </results>
 </body>
