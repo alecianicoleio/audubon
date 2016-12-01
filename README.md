@@ -62,8 +62,8 @@ Second, since all great developers use unit testing to verify their code is work
 
 To run tests use the command vendor/bin/peridot tests/unit
 
-References:
-Peridot- http://peridot-php.github.io/
+References: <br />
+Peridot- http://peridot-php.github.io/ <br />
 Leo- http://peridot-php.github.io/leo/
 
 #### Setting up the ORM
@@ -74,7 +74,7 @@ At this point you may find the [Doctrine documentation](http://doctrine-orm.read
 
 That's it!
 
-Useful laravel references
-Laravel- https://laravel.com/docs/5.3
-Migrations- https://laravel.com/docs/5.3/migrations
+Useful laravel references<br />
+Laravel- https://laravel.com/docs/5.3<br />
+Migrations- https://laravel.com/docs/5.3/migrations<br />
 Query builder- https://laravel.com/docs/5.3/queries
