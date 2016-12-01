@@ -41,71 +41,40 @@ Your aunt's coworker is going to be just thrilled to have your help!
 
 The following will help you set up your project in a way that will let you follow best practices.
 
-First, you will need to [install Composer](https://getcomposer.org/doc/00-intro.md#globally), so that you will be able to easily manage all the third party dependencies that your app will require.
+1.  Setup laravel homestead https://laravel.com/docs/5.3/homestead
+2.  Clone the audubon repo https://help.github.com/articles/cloning-a-repository/
+3.  Create a database (either via vagrant ssh or using mysql workbench)
+4.  Copy .env.example and create a new file .env
+5.  Configure .env (database name, username, and password should be the only ones potentionally changed)
 
-Once composer is installed, run
+## Vagrant
 
-    composer install
-    
-from the root directory of your repository, which will automatically download and install all your third party dependencies into your project.
+Vagrant is installed during during the laravel homestead step.  Once the steps above are complete, the following needs to be done. 
+
+1.  vagrant ssh (in the Homestead directory)
+2.  Go to the audubon project directory
+3.  composer install
+4.  php artisan doctrine:generate:proxies
+5.  php artisan migrate
 
 ### Unit tests
-Second, since all great developers use unit testing to verify their code is working properly, you will probably want to install PHPUnit.
+Second, since all great developers use unit testing to verify their code is working properly.  There is no longer a setup required to run tests (composer install installs all the needed plugins).  
 
-Since we are all linuxy and stuff, it's really easy to do through terminal:
+To run tests use the command vendor/bin/peridot tests/unit
 
-    sudo apt-get install PHPUnit
-
-Now you should be able to *start unit testing*! From the root directory of your repository, just use
-
-    phpunit
-
-to run all the unit tests and see everything broken (or working!) in your code. :)
-
-### Persistence
-Third, you will probably need some sort of persistence or storage solution, so that you can list out all the sightings that your aunt's coworker's website tracks.  Luckily, you will be able to do this process relatively easily.  To open the MySQL command line interface, run
-    
-    mysql -u 'your-username' -p
-
-> Your username is probably 'root', unless you took the time to make your local database extra secure.
-
-From inside the MySQL CLI, create the Audubon database by running
-    
-    create database audubon;
-    
-This creates an empty database ready to be loaded with tables, which will be handled in the next step.  You can now run `exit` to leave MySQL.
+References:
+Peridot- http://peridot-php.github.io/
+Leo- http://peridot-php.github.io/leo/
 
 #### Setting up the ORM
 
-Finally, you will need to set up an [ORM](en.wikipedia.org/wiki/Object-relational_mapping), which is a framework (in our case, a PHP framework) that accesses the database for us.  This is a preferable alternative to mixing MySQL queries with our business logic.
-
-An ORM framework called Doctrine has already been installed for you by Composer, but you still need to configure and run it.
-
-In the `config/` folder, create a new file called `local.php`. Copy the following code into it, changing `*YOUR-DATABASE-PASSWORD-HERE*` to your actual MySQL password.
-
-    <?php
-    
-     $local = array(
-         'password'  =>  '*YOUR-DATABASE-PASSWORD-HERE*',
-     );
-
-     $db = array_replace($db,$local);
-
-     ?>
-
-This `config/local.php` file is gitignored, so no one else will be able to see your password.
-
-Once your password has been updated, Doctrine is now configured to be able to access your Audubon database. You can use the Doctrine CLI to generate your database tables. From the root directory of your repository, run
-
-    php vendor/bin/doctrine orm:schema-tool:create
-
-If all went well, you should now have a working database!  Log back in to MySQL and run
-    
-    use Audubon;
-    show tables;
-    
-to check out what Doctrine did for you.
+No setup for the ORM is required.  Configuring the database info in the .env file is all that is needed for the ORM.
 
 At this point you may find the [Doctrine documentation](http://doctrine-orm.readthedocs.org/en/latest/reference/working-with-objects.html) helpful to figure out how to save and retrieve records.
 
 That's it!
+
+Useful laravel references
+Laravel- https://laravel.com/docs/5.3
+Migrations- https://laravel.com/docs/5.3/migrations
+Query builder- https://laravel.com/docs/5.3/queries
