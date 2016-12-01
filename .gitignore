@@ -1,5 +1,8 @@
-.idea/
-*.swp
-composer.lock
-vendor/
-config/local.php
+/node_modules
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
