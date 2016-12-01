@@ -58,7 +58,7 @@ Vagrant is installed during during the laravel homestead step.  Once the steps a
 5.  php artisan migrate
 
 ### Unit tests
-Second, since all great developers use unit testing to verify their code is working properly.  There is no longer a setup required to run tests (composer install installs all the needed plugins).  
+Second, all great developers use unit testing to verify their code is working properly.  There is no longer a setup required to run tests (composer install installs all the needed plugins).  
 
 To run tests use the command vendor/bin/peridot tests/unit
 
