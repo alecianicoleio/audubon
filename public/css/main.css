@@ -1,0 +1,154 @@
+html {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.1em;
+  color: #FFF;
+  background:-webkit-linear-gradient(rgba(189, 195, 199, 0.75),rgba(189, 195, 199, 0.75)), url(http://art.britishbirdlovers.co.uk/wp-content/uploads/kate-slater8.jpg);
+  background:linear-gradient(rgba(189, 195, 199, 0.75),rgba(189, 195, 199, 0.75)), url(http://art.britishbirdlovers.co.uk/wp-content/uploads/kate-slater8.jpg);
+  margin: 50px;
+}
+body { 
+  background: transparent;
+  text-align: center;
+} 
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+.cf:after { clear: both; }
+.cf { *zoom: 1; }
+
+.logo {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  background: #1ABC9C; 
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+.logo-wrapper {
+  position: absolute;
+  width: 50px;
+  left: 25px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.logo h1 { 
+  color: #FFF; 
+  font-size: 1.2em;
+  letter-spacing: 0em;
+  margin-top: -5px;
+}
+.logo img { width: 100%; }
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #333;
+  border-radius: 4px; 
+}
+.form-wrapper { padding: 50px; }
+.form-container h2 { 
+  display: block;
+  color: #A3A3A3; 
+  font-weight: 100;
+  font-size: 1.2em;
+  margin-top: 0px;
+  margin-bottom: 40px;
+}
+.brdr-form l, ul {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  font-size: 100%;
+  margin: 0;
+  outline: 0 none;
+  padding: 0;
+  vertical-align: baseline;
+  list-style: none outside none;
+}
+.form-label { float: left; }
+.form-label {
+  color: #858585;
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: .75em;
+}
+.form-control { 
+  border: 1px solid #A3A3A3; 
+  border-radius: 0;
+  background: #3d3d3d; 
+  color: #FFF;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+}
+.errFocus { border: 1px solid #f39c12; }
+.form-control:active, .form-control:focus { 
+  border-color: #1ABC9C; 
+  box-shadow: none;
+  color: #93F0DE;
+}
+.form-control::-webkit-input-placeholder{ color: #292929 !important; }
+.form-control::-moz-placeholder{ color: #292929 !important; }
+.form-control:-ms-input-placeholder{ color: #292929 !important; }
+.form-control::placeholder{ color: #292929 !important; }
+.form-group { margin-bottom: 0; }
+.form-text { 
+  font-weight: 200;
+  color: #A3A3A3; 
+  width: 100%;
+  margin: 5px 0 0 0;
+  text-align: left;
+}
+.rqurd { 
+  color: #1abc9c;  
+  font-weight: 600;
+}
+.disclaimer { display: block; margin-top: 20px; }
+.btn-primary {
+  background: #1abc9c;
+  border: 1px solid #1abc9c;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #3d3d3d;
+  margin-top: 10px;
+}
+.btn-primary:hover { 
+  background: #16a085; 
+  color: #333333;
+  border: 1px solid #16a085;
+}
+.btn-primary:active, .btn-primary:focus { 
+  background: #2ecc71 !important; 
+  border: 1px solid #2ecc71 !important;
+  outline: none !important;
+}
+.error { color: yellow; }
+
+.sighting-event div { 
+	overflow: hidden;
+	background: #A3A3A3;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+@media screen and (min-width: 640px) /* Desktop */ {
+  .half-l, .half-r { 
+    width: 49%;
+    float: left;
+  }
+  .half-l { margin-right: 2%; }
+
+  .sighting-event {
+  	width: 50%;
+  	float: left;
+  }
+  .sighting-event div{ margin: 5px; }
+}
+
+

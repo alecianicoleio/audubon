@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('hello', 'HelloController@helloWorld');
+
+Route::get('sighting', 'SightingController@sighting');
+
+Route::get('reported', 'ReportedController@reported');
