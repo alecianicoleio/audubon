@@ -22,7 +22,7 @@
             <h1>BRDR</h1>
           </div>
         </div> 
-        <h2>Did you see a bird? Tell us about it! <br>Click <a href="reported">here</a> to see a list of sightings.</h2>
+        <h2>Did you see a bird? Tell us about it! <br>Click <a href="{{ url('/reported') }}">here</a> to see a list of sightings.</h2>
 
         <!-- <div id="error-container" class="err-container">
           <p>Oops, looks like you forgot something: </p>
@@ -31,7 +31,8 @@
           </div>
         </div>-->
 
-        <form class="brdr-form" name="brdr-form" method="post" action=""><!--onsubmit="return validateThat();" -->
+        <form class="brdr-form" name="brdr-form" method="post" action="{{ route('sighting.save.route') }}">
+          <input type="hidden" name="_token" value="{{csrf_token()}}">
           <ul> 
             <li class="form-group half-l"> 
               <label class="form-label" for="inputFirst">First Name</label>

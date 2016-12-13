@@ -1,0 +1,36 @@
+Audubon\Entities\Sighting:
+    type: entity
+    table: Sighting
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        date:
+            type: datetime
+            nullable: false
+        location:
+            type: string
+            nullable: false
+            length: 255
+    manyToOne:
+        person: 
+            targetEntity: Audubon\Entities\Person
+            inversedBy: sightings
+            joinColumn:
+                name: personID
+                referencedColumnName: id
+            cascade: ['persist']
+        bird: 
+            targetEntity: Audubon\Entities\Bird
+            inversedBy: sightings
+            joinColumn:
+                name: birdID
+                referencedColumnName: id
+            cascade: ['persist']
+    lifecycleCallbacks: {  }

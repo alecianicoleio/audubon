@@ -17,6 +17,22 @@ Route::get('/', function () {
 
 Route::get('hello', 'HelloController@helloWorld');
 
-Route::get('sighting', 'SightingController@sighting');
+Route::get('sighting', [ 
+	'as' => 'sighting.create.route',
+	'uses' => 'SightingController@sighting'
+]);
 
-Route::get('reported', 'ReportedController@reported');
+Route::get('reported', [
+	'as' => 'sighting.report.route',
+	'uses' =>'SightingController@reported'
+]);
+
+Route::get('confirmation/{id}', [
+	'as' => 'sighting.confirmation.route',
+	'uses' =>'SightingController@confirmation'
+])->where('id', '[0-9]+');
+
+Route::post('sighting', [ 
+	'as' => 'sighting.save.route',
+	'uses' => 'SightingController@save'
+]);

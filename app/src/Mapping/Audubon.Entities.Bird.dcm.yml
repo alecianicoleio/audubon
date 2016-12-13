@@ -1,0 +1,26 @@
+Audubon\Entities\Bird:
+    type: entity
+    table: Birds
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        species:
+            type: string
+            nullable: false
+            length: 255
+        description:
+            type: string
+            nullable: false
+            length: 255
+    oneToMany:
+        sightings: 
+            targetEntity: Audubon\Entities\Sighting
+            mappedBy: bird
+    lifecycleCallbacks: {  }

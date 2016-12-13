@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Audubon</title>
+    <title>Confirmation</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -24,19 +24,19 @@
             <h1>BRDR</h1>
           </div>
         </div> 
-        <h2>Here are some birds that people saw. <br>Click <a href="{{ url('/sighting') }}">here</a> to report your own bird.</h2>
+        <h2>Your sighting has been submitted! <br>Click <a href="{{ url('/reported') }}">here</a> to view all sightings.</h2>
         <ul class="reported-sightings cf">
 
-          @foreach($sightings as $sighting)
-            <li class="sighting-event">
+          
+            <div class="sighting-event">
               <div>
                 <h3 class="event-bird">{{ $sighting->getBird()->getSpecies() }}</h3>
                 <h3 class="event-description">{{ $sighting->getBird()->getDescription() }}</h3>
                 <h4 class="event-location">{{ $sighting->getLocation() }}</h4>
                 <p><span class="event-date">{{ $sighting->getDate()->format('Y-m-d H:i:s') }}</span></p>
               </div>
-            </li>
-          @endforeach 
+            </div>
+          
 
 
         </ul>

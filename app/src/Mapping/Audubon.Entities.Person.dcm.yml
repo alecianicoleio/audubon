@@ -1,0 +1,34 @@
+Audubon\Entities\Person:
+    type: entity
+    table: Person
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        first:
+            type: string
+            nullable: true
+            length: 255
+        last:
+            type: string
+            nullable: true
+            length: 255
+        phone:
+            type: string
+            nullable: true
+            length: 20
+        email:
+            type: string
+            nullable: true
+            length: 255
+    oneToMany:
+        sightings: 
+            targetEntity: Audubon\Entities\Sighting
+            mappedBy: person
+    lifecycleCallbacks: {  }
