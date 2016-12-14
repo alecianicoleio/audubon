@@ -10,9 +10,11 @@ use Audubon\Entities\Bird;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 use DateTime;
 
+
 class SightingController extends Controller
 {
     public function sighting(){
+        
         return view('sighting');
     }
 

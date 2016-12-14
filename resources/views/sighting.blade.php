@@ -81,15 +81,13 @@
 
     <small class="disclaimer">We'll never share your email with anyone else, ever.</small>
 
-
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script> 
+    {!! HTML::script('https://code.jquery.com/jquery-1.12.0.min.js') !!}
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script> 
-    <script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB03xek-FO2jBgvTu-3ebzWaVbEdNsCBmw&libraries=places"></script>
-    
-    <script src="http://codepen.io/alecianicole/pen/24a4d2b74dee2c75f31a8077ff0ec5fe.js"></script> 
-    <script src="./js/main.js"></script>
+    {!! HTML::script('http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js') !!}
+    {!! HTML::script('http://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js') !!}
+    {!! HTML::script('https://maps.googleapis.com/maps/api/js?key=AIzaSyB03xek-FO2jBgvTu-3ebzWaVbEdNsCBmw&libraries=places') !!}
+    {!! HTML::script('http://codepen.io/alecianicole/pen/24a4d2b74dee2c75f31a8077ff0ec5fe.js') !!}
+    {!! HTML::script('/js/main.js') !!}
 
   </body>
 </html>

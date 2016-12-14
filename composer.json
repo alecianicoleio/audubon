@@ -10,7 +10,8 @@
         "laravel-doctrine/orm": "1.2.*",
         "symfony/yaml": "^3.2",
         "peridot-php/peridot": "~1.15",
-        "peridot-php/leo": "~1.0"
+        "peridot-php/leo": "~1.0",
+        "laravelcollective/html": "5.3.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
