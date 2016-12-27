@@ -9,12 +9,14 @@ use Audubon\Entities\Person;
 use Audubon\Entities\Bird;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 use DateTime;
+use Audubon\Service\BirdValidator;
+use Audubon\Service\SightingValidator;
+use Audubon\Service\PersonValidator;
 
 
 class SightingController extends Controller
 {
     public function sighting(){
-        
         return view('sighting');
     }
 
@@ -23,10 +25,9 @@ class SightingController extends Controller
         return view('reported',['sightings'=>$sightings]);
     }
 
-    public function save(Request $request){
+    public function save(Request $request, SightingValidator $sightingValidator){
+    
     	$input = $request->input();
-    	// var_dump($input);
-    	
     	$person = new Person();
     	$sighting = new Sighting();
     	$bird = new Bird();
@@ -41,15 +42,18 @@ class SightingController extends Controller
 	    	$sighting->setPerson($person);
     	}
     	// Else, without creating person
-
     	$bird->setSpecies($input['inputSpec']);
     	$bird->setDescription($input['inputDescrip']);
-
     	$date = new DateTime($input['inputDate'] . ' ' . $input['inputTime']);
     	$sighting->setLocation($input['inputLoc']);
     	$sighting->setDate($date);
-    	
     	$sighting->setBird($bird);
+
+        // Validate 
+        if (!$sightingValidator->validateSighting($sighting)){
+            // if returns false throw exception
+            throw new \Exception('Invalid data!!!!');
+        }
 
 		EntityManager::persist($sighting);
 		EntityManager::flush();
@@ -60,8 +64,5 @@ class SightingController extends Controller
     	$sighting = EntityManager::getRepository(Sighting::class)->find($id);
     	return view('confirmation',['sighting'=>$sighting]);
     }
-
-
-
 
 }
